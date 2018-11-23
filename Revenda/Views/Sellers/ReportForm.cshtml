@@ -1,0 +1,28 @@
+﻿@using Stimulsoft.Report.Mvc;
+
+@model Revenda.Models.City
+
+@{
+    ViewBag.Title = "Lista de Vendedores";
+}
+<h4>Lista de Vendedores</h4>
+@Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn btn-success btn-sm" })
+<p>
+
+</p>
+<table>
+    <tr>
+        <td style="width: 150%;" valign="top">
+            @Html.Stimulsoft().StiMvcViewer(new StiMvcViewerOptions()
+               {
+                   Actions =
+                    {
+                        GetReport = "ReportForm",
+                        ViewerEvent = "ViewerEvent"
+                    },
+
+                   Localization = "~/Localization/pt-BR.xml"
+               })
+        </td>
+    </tr>
+</table>

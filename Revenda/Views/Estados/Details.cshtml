@@ -1,0 +1,26 @@
+﻿@model Revenda.Models.Estado
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Estado</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.EstadoId }, new { @class = "btn btn-warning btn-sm" })
+    @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn btn-success btn-sm" })
+</p>

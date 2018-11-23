@@ -1,0 +1,853 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="1">
+      <DefaultConnection Ref="2" type="Stimulsoft.Report.Dictionary.StiSqlDatabase" isKey="true">
+        <Alias>DefaultConnection</Alias>
+        <ConnectionStringEncrypted>9FzRoe9K8wVFYYTY5Bwkf9Fu2c1WX3sBRlu5CMNx5z/fcNEpxgPDzUZ91dxpTKxn9Fr3oc1RS7xpTdn45BjrN99U9wLFUfO8f0nNzOoY9j/T</ConnectionStringEncrypted>
+        <Name>DefaultConnection</Name>
+      </DefaultConnection>
+    </Databases>
+    <DataSources isList="true" count="1">
+      <Categories Ref="3" type="Stimulsoft.Report.Dictionary.StiSqlSource" isKey="true">
+        <Alias>Categories</Alias>
+        <Columns isList="true" count="3">
+          <value>CategoryId,System.Int32</value>
+          <value>CompanyId,System.Int32</value>
+          <value>Description,System.String</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>Categories</Name>
+        <NameInSource>DefaultConnection</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>select * from Categories</SqlCommand>
+      </Categories>
+    </DataSources>
+    <Relations isList="true" count="0" />
+    <Report isRef="0" />
+    <Resources isList="true" count="0" />
+    <Variables isList="true" count="0" />
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <MetaTags isList="true" count="0" />
+  <Pages isList="true" count="1">
+    <Page1 Ref="4" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="5">
+        <ReportTitle Ref="5" type="ReportTitleBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,0.4,19.01,1.4</ClientRectangle>
+          <Components isList="true" count="4">
+            <ReportTitleText Ref="6" type="Text" isKey="true">
+              <Border>None;[17:40:0];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5,0.6,9.61,0.6</ClientRectangle>
+              <ComponentStyle>Green 100%_Report_Title1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Editable>True</Editable>
+              <Font>Arial,14,Bold</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>ReportTitleText</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>Lista de Categorias</Text>
+              <TextBrush>[117:140:72]</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </ReportTitleText>
+            <Image1 Ref="7" type="Image" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0,1.8,1.4</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <ImageBytes>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
+AElFTkSuQmCC</ImageBytes>
+              <Margins>0,0,0,0</Margins>
+              <Name>Image1</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+            </Image1>
+            <Text1 Ref="8" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>1.6,0.6,3.2,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text1</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>arcela Acessórios</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text1>
+            <Text2 Ref="9" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>16,0.6,2.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text2</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{Today}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>SystemVariables</Type>
+            </Text2>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>ReportTitle</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </ReportTitle>
+        <DataBand1 Ref="10" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,2.6,19.01,0.8</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Conditions isList="true" count="0" />
+          <Filters isList="true" count="0" />
+          <Name>DataBand1</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+          <Sort isList="true" count="0" />
+        </DataBand1>
+        <Header Ref="11" type="HeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,4.2,19.01,0.6</ClientRectangle>
+          <Components isList="true" count="2">
+            <HeaderText1 Ref="12" type="Text" isKey="true">
+              <Border>None;[17:40:0];1;Solid;False;4;Black;True</Border>
+              <Brush>[117:140:72]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0,0,9.4,0.6</ClientRectangle>
+              <ComponentStyle>Green 100%_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderText1</Name>
+              <Page isRef="4" />
+              <Parent isRef="11" />
+              <Text>Código</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderText1>
+            <HeaderText2 Ref="13" type="Text" isKey="true">
+              <Border>None;[17:40:0];1;Solid;False;4;Black;True</Border>
+              <Brush>[117:140:72]</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>9.4,0,9.6,0.6</ClientRectangle>
+              <ComponentStyle>Green 100%_Header1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderText2</Name>
+              <Page isRef="4" />
+              <Parent isRef="11" />
+              <Text>Descrição</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderText2>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>Header</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </Header>
+        <Data Ref="14" type="DataBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,5.6,19.01,0.6</ClientRectangle>
+          <Components isList="true" count="2">
+            <DataText1 Ref="15" type="Text" isKey="true">
+              <Border>None;[17:40:0];1;Solid;False;4;Black;True</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0,0,9.4,0.6</ClientRectangle>
+              <ComponentStyle>Green 100%_Data1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataText1</Name>
+              <Page isRef="4" />
+              <Parent isRef="14" />
+              <Text>{Categories.CategoryId}</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText1>
+            <DataText2 Ref="16" type="Text" isKey="true">
+              <Border>None;[17:40:0];1;Solid;False;4;Black;True</Border>
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>9.4,0,9.6,0.6</ClientRectangle>
+              <ComponentStyle>Green 100%_Data1</ComponentStyle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataText2</Name>
+              <Page isRef="4" />
+              <Parent isRef="14" />
+              <Text>{Categories.Description}</Text>
+              <TextBrush>[0:0:0]</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataText2>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataSourceName>Categories</DataSourceName>
+          <EvenStyle>Green 100%_Data1_Even Style</EvenStyle>
+          <Filters isList="true" count="0" />
+          <Name>Data</Name>
+          <OddStyle>Green 100%_Data1_Odd Style</OddStyle>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+          <Sort isList="true" count="2">
+            <value>ASC</value>
+            <value>CategoryId</value>
+          </Sort>
+        </Data>
+        <Footer Ref="17" type="FooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,7,19.01,0.6</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Conditions isList="true" count="0" />
+          <Name>Footer</Name>
+          <Page isRef="4" />
+          <Parent isRef="4" />
+        </Footer>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>73268b7aa6204d00ad956023116713bd</Guid>
+      <Margins>1,1,1,1</Margins>
+      <Name>Page1</Name>
+      <PageHeight>29.69</PageHeight>
+      <PageWidth>21.01</PageWidth>
+      <Report isRef="0" />
+      <Watermark Ref="18" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </Page1>
+  </Pages>
+  <PrinterSettings Ref="19" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Report</ReportAlias>
+  <ReportChanged>8/17/2018 6:03:54 PM</ReportChanged>
+  <ReportCreated>8/17/2018 6:03:54 PM</ReportCreated>
+  <ReportGuid>6ba7c723d1a142adbb0efb08afb3de58</ReportGuid>
+  <ReportName>Report</ReportName>
+  <ReportUnit>Centimeters</ReportUnit>
+  <ReportVersion>2018.1.8.0</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    public class Report : Stimulsoft.Report.StiReport
+    {
+        public Report()        {
+            this.InitializeComponent();
+        }
+
+        #region StiReport Designer generated code - do not modify
+		#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="27">
+    <Green_x0020_100_x0025__Report_Title1 Ref="20" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[17:40:0];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Green 100%</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item18 Ref="21" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image, CheckBox</ComponentType>
+          <Placement>ReportTitle</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item18>
+      </Conditions>
+      <Font>Arial,14,Bold</Font>
+      <Name>Green 100%_Report_Title1</Name>
+      <TextBrush>[117:140:72]</TextBrush>
+    </Green_x0020_100_x0025__Report_Title1>
+    <Green_x0020_100_x0025__Report_Title2 Ref="22" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[17:40:0];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Green 100%</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item20 Ref="23" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image, CheckBox</ComponentType>
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>ReportTitle</Placement>
+          <PlacementNestedLevel>2</PlacementNestedLevel>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item20>
+      </Conditions>
+      <Font>Arial,10,Bold</Font>
+      <Name>Green 100%_Report_Title2</Name>
+      <TextBrush>[117:140:72]</TextBrush>
+    </Green_x0020_100_x0025__Report_Title2>
+    <Green_x0020_100_x0025__Report_Summary1 Ref="24" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[17:40:0];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Green 100%</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item22 Ref="25" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image, CheckBox</ComponentType>
+          <Placement>ReportSummary</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item22>
+      </Conditions>
+      <Font>Arial,12,Bold</Font>
+      <Name>Green 100%_Report_Summary1</Name>
+      <TextBrush>[117:140:72]</TextBrush>
+    </Green_x0020_100_x0025__Report_Summary1>
+    <Green_x0020_100_x0025__Report_Summary2 Ref="26" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[17:40:0];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Green 100%</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item24 Ref="27" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image, CheckBox</ComponentType>
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>ReportSummary</Placement>
+          <PlacementNestedLevel>2</PlacementNestedLevel>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item24>
+      </Conditions>
+      <Font>Arial,10,Bold</Font>
+      <Name>Green 100%_Report_Summary2</Name>
+      <TextBrush>[117:140:72]</TextBrush>
+    </Green_x0020_100_x0025__Report_Summary2>
+    <Green_x0020_100_x0025__Page_Header Ref="28" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[17:40:0];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Green 100%</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item26 Ref="29" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image, CheckBox</ComponentType>
+          <Placement>PageHeader</Placement>
+          <Type>ComponentType, Placement</Type>
+        </Item26>
+      </Conditions>
+      <Font>Arial,10</Font>
+      <Name>Green 100%_Page_Header</Name>
+      <TextBrush>[117:140:72]</TextBrush>
+    </Green_x0020_100_x0025__Page_Header>
+    <Green_x0020_100_x0025__Page_Footer Ref="30" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[17:40:0];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Green 100%</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item28 Ref="31" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image, CheckBox</ComponentType>
+          <Placement>PageFooter</Placement>
+          <Type>ComponentType, Placement</Type>
+        </Item28>
+      </Conditions>
+      <Font>Arial,10</Font>
+      <Name>Green 100%_Page_Footer</Name>
+      <TextBrush>[117:140:72]</TextBrush>
+    </Green_x0020_100_x0025__Page_Footer>
+    <Green_x0020_100_x0025__Group_Header1 Ref="32" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[17:40:0];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Green 100%</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item30 Ref="33" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image, CheckBox</ComponentType>
+          <Placement>GroupHeader</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item30>
+      </Conditions>
+      <Font>Arial,13,Bold</Font>
+      <Name>Green 100%_Group_Header1</Name>
+      <TextBrush>[117:140:72]</TextBrush>
+    </Green_x0020_100_x0025__Group_Header1>
+    <Green_x0020_100_x0025__Group_Header2 Ref="34" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[17:40:0];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Green 100%</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item32 Ref="35" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image, CheckBox</ComponentType>
+          <Placement>GroupHeader</Placement>
+          <PlacementNestedLevel>2</PlacementNestedLevel>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item32>
+      </Conditions>
+      <Font>Arial,12,Bold</Font>
+      <Name>Green 100%_Group_Header2</Name>
+      <TextBrush>[117:140:72]</TextBrush>
+    </Green_x0020_100_x0025__Group_Header2>
+    <Green_x0020_100_x0025__Group_Header3 Ref="36" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[17:40:0];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Green 100%</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item34 Ref="37" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image, CheckBox</ComponentType>
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>GroupHeader</Placement>
+          <PlacementNestedLevel>3</PlacementNestedLevel>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item34>
+      </Conditions>
+      <Font>Arial,11,Bold</Font>
+      <Name>Green 100%_Group_Header3</Name>
+      <TextBrush>[117:140:72]</TextBrush>
+    </Green_x0020_100_x0025__Group_Header3>
+    <Green_x0020_100_x0025__Group_Footer1 Ref="38" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[17:40:0];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Green 100%</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item36 Ref="39" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image, CheckBox</ComponentType>
+          <Placement>GroupFooter</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item36>
+      </Conditions>
+      <Font>Arial,13,Bold</Font>
+      <Name>Green 100%_Group_Footer1</Name>
+      <TextBrush>[117:140:72]</TextBrush>
+    </Green_x0020_100_x0025__Group_Footer1>
+    <Green_x0020_100_x0025__Group_Footer2 Ref="40" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[17:40:0];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Green 100%</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item38 Ref="41" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image, CheckBox</ComponentType>
+          <Placement>GroupFooter</Placement>
+          <PlacementNestedLevel>2</PlacementNestedLevel>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item38>
+      </Conditions>
+      <Font>Arial,12,Bold</Font>
+      <Name>Green 100%_Group_Footer2</Name>
+      <TextBrush>[117:140:72]</TextBrush>
+    </Green_x0020_100_x0025__Group_Footer2>
+    <Green_x0020_100_x0025__Group_Footer3 Ref="42" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[17:40:0];1;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Green 100%</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item40 Ref="43" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image, CheckBox</ComponentType>
+          <Placement>GroupFooter</Placement>
+          <PlacementNestedLevel>3</PlacementNestedLevel>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item40>
+      </Conditions>
+      <Font>Arial,11,Bold</Font>
+      <Name>Green 100%_Group_Footer3</Name>
+      <TextBrush>[117:140:72]</TextBrush>
+    </Green_x0020_100_x0025__Group_Footer3>
+    <Green_x0020_100_x0025__Header1 Ref="44" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[17:40:0];1;Solid;False;4;Black;True</Border>
+      <Brush>[117:140:72]</Brush>
+      <CollectionName>Green 100%</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item42 Ref="45" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image, CheckBox</ComponentType>
+          <Placement>Header</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item42>
+      </Conditions>
+      <Font>Arial,8,Bold</Font>
+      <Name>Green 100%_Header1</Name>
+      <TextBrush>[0:0:0]</TextBrush>
+    </Green_x0020_100_x0025__Header1>
+    <Green_x0020_100_x0025__Header2 Ref="46" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[17:40:0];1;Solid;False;4;Black;True</Border>
+      <Brush>[150:173:105]</Brush>
+      <CollectionName>Green 100%</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item44 Ref="47" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image, CheckBox</ComponentType>
+          <Placement>Header</Placement>
+          <PlacementNestedLevel>2</PlacementNestedLevel>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item44>
+      </Conditions>
+      <Font>Arial,8,Bold</Font>
+      <Name>Green 100%_Header2</Name>
+      <TextBrush>[0:0:0]</TextBrush>
+    </Green_x0020_100_x0025__Header2>
+    <Green_x0020_100_x0025__Header3 Ref="48" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[17:40:0];1;Solid;False;4;Black;True</Border>
+      <Brush>[183:206:138]</Brush>
+      <CollectionName>Green 100%</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item46 Ref="49" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image, CheckBox</ComponentType>
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>Header</Placement>
+          <PlacementNestedLevel>3</PlacementNestedLevel>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item46>
+      </Conditions>
+      <Font>Arial,8,Bold</Font>
+      <Name>Green 100%_Header3</Name>
+      <TextBrush>[0:0:0]</TextBrush>
+    </Green_x0020_100_x0025__Header3>
+    <Green_x0020_100_x0025__Data1 Ref="50" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[17:40:0];1;Solid;False;4;Black;True</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Green 100%</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item48 Ref="51" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image, CheckBox</ComponentType>
+          <Placement>Data</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item48>
+      </Conditions>
+      <Font>Arial,8</Font>
+      <Name>Green 100%_Data1</Name>
+      <TextBrush>[0:0:0]</TextBrush>
+    </Green_x0020_100_x0025__Data1>
+    <Green_x0020_100_x0025__Data1_Odd_x0020_Style Ref="52" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[17:40:0];1;Solid;False;4;Black;True</Border>
+      <Brush>[255:255:222]</Brush>
+      <CollectionName>Green 100%</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item50 Ref="53" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <Placement>DataOddStyle</Placement>
+          <Type>Placement, PlacementNestedLevel</Type>
+        </Item50>
+      </Conditions>
+      <Font>Arial,8</Font>
+      <Name>Green 100%_Data1_Odd Style</Name>
+      <TextBrush>[0:0:0]</TextBrush>
+    </Green_x0020_100_x0025__Data1_Odd_x0020_Style>
+    <Green_x0020_100_x0025__Data1_Even_x0020_Style Ref="54" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[17:40:0];1;Solid;False;4;Black;True</Border>
+      <Brush>[192:215:147]</Brush>
+      <CollectionName>Green 100%</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item52 Ref="55" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <Placement>DataEvenStyle</Placement>
+          <Type>Placement, PlacementNestedLevel</Type>
+        </Item52>
+      </Conditions>
+      <Font>Arial,8</Font>
+      <Name>Green 100%_Data1_Even Style</Name>
+      <TextBrush>[0:0:0]</TextBrush>
+    </Green_x0020_100_x0025__Data1_Even_x0020_Style>
+    <Green_x0020_100_x0025__Data2 Ref="56" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[17:40:0];1;Solid;False;4;Black;True</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Green 100%</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item54 Ref="57" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image, CheckBox</ComponentType>
+          <Placement>Data</Placement>
+          <PlacementNestedLevel>2</PlacementNestedLevel>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item54>
+      </Conditions>
+      <Font>Arial,8</Font>
+      <Name>Green 100%_Data2</Name>
+      <TextBrush>[0:0:0]</TextBrush>
+    </Green_x0020_100_x0025__Data2>
+    <Green_x0020_100_x0025__Data2_Odd_x0020_Style Ref="58" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[17:40:0];1;Solid;False;4;Black;True</Border>
+      <Brush>[255:255:242]</Brush>
+      <CollectionName>Green 100%</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item56 Ref="59" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <Placement>DataOddStyle</Placement>
+          <PlacementNestedLevel>2</PlacementNestedLevel>
+          <Type>Placement, PlacementNestedLevel</Type>
+        </Item56>
+      </Conditions>
+      <Font>Arial,8</Font>
+      <Name>Green 100%_Data2_Odd Style</Name>
+      <TextBrush>[0:0:0]</TextBrush>
+    </Green_x0020_100_x0025__Data2_Odd_x0020_Style>
+    <Green_x0020_100_x0025__Data2_Even_x0020_Style Ref="60" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[17:40:0];1;Solid;False;4;Black;True</Border>
+      <Brush>[202:225:157]</Brush>
+      <CollectionName>Green 100%</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item58 Ref="61" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <Placement>DataEvenStyle</Placement>
+          <PlacementNestedLevel>2</PlacementNestedLevel>
+          <Type>Placement, PlacementNestedLevel</Type>
+        </Item58>
+      </Conditions>
+      <Font>Arial,8</Font>
+      <Name>Green 100%_Data2_Even Style</Name>
+      <TextBrush>[0:0:0]</TextBrush>
+    </Green_x0020_100_x0025__Data2_Even_x0020_Style>
+    <Green_x0020_100_x0025__Data3 Ref="62" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[17:40:0];1;Solid;False;4;Black;True</Border>
+      <Brush>Transparent</Brush>
+      <CollectionName>Green 100%</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item60 Ref="63" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image, CheckBox</ComponentType>
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>Data</Placement>
+          <PlacementNestedLevel>3</PlacementNestedLevel>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item60>
+      </Conditions>
+      <Font>Arial,8</Font>
+      <Name>Green 100%_Data3</Name>
+      <TextBrush>[0:0:0]</TextBrush>
+    </Green_x0020_100_x0025__Data3>
+    <Green_x0020_100_x0025__Data3_Odd_x0020_Style Ref="64" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[17:40:0];1;Solid;False;4;Black;True</Border>
+      <Brush>[255:255:255]</Brush>
+      <CollectionName>Green 100%</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item62 Ref="65" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>DataOddStyle</Placement>
+          <PlacementNestedLevel>3</PlacementNestedLevel>
+          <Type>Placement, PlacementNestedLevel</Type>
+        </Item62>
+      </Conditions>
+      <Font>Arial,8</Font>
+      <Name>Green 100%_Data3_Odd Style</Name>
+      <TextBrush>[0:0:0]</TextBrush>
+    </Green_x0020_100_x0025__Data3_Odd_x0020_Style>
+    <Green_x0020_100_x0025__Data3_Even_x0020_Style Ref="66" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[17:40:0];1;Solid;False;4;Black;True</Border>
+      <Brush>[212:235:167]</Brush>
+      <CollectionName>Green 100%</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item64 Ref="67" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <OperationPlacementNestedLevel>GreaterThanOrEqualTo</OperationPlacementNestedLevel>
+          <Placement>DataEvenStyle</Placement>
+          <PlacementNestedLevel>3</PlacementNestedLevel>
+          <Type>Placement, PlacementNestedLevel</Type>
+        </Item64>
+      </Conditions>
+      <Font>Arial,8</Font>
+      <Name>Green 100%_Data3_Even Style</Name>
+      <TextBrush>[0:0:0]</TextBrush>
+    </Green_x0020_100_x0025__Data3_Even_x0020_Style>
+    <Green_x0020_100_x0025__Footer1 Ref="68" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[17:40:0];1;Solid;False;4;Black;True</Border>
+      <Brush>[137:160:92]</Brush>
+      <CollectionName>Green 100%</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item66 Ref="69" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image, CheckBox</ComponentType>
+          <Placement>Footer</Placement>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item66>
+      </Conditions>
+      <Font>Arial,8</Font>
+      <Name>Green 100%_Footer1</Name>
+      <TextBrush>[0:0:0]</TextBrush>
+    </Green_x0020_100_x0025__Footer1>
+    <Green_x0020_100_x0025__Footer2 Ref="70" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[17:40:0];1;Solid;False;4;Black;True</Border>
+      <Brush>[170:193:125]</Brush>
+      <CollectionName>Green 100%</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item68 Ref="71" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image, CheckBox</ComponentType>
+          <Placement>Footer</Placement>
+          <PlacementNestedLevel>2</PlacementNestedLevel>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item68>
+      </Conditions>
+      <Font>Arial,8</Font>
+      <Name>Green 100%_Footer2</Name>
+      <TextBrush>[0:0:0]</TextBrush>
+    </Green_x0020_100_x0025__Footer2>
+    <Green_x0020_100_x0025__Footer3 Ref="72" type="Stimulsoft.Report.StiStyle" isKey="true">
+      <Border>None;[17:40:0];1;Solid;False;4;Black;True</Border>
+      <Brush>[203:226:158]</Brush>
+      <CollectionName>Green 100%</CollectionName>
+      <Conditions isList="true" count="1">
+        <Item70 Ref="73" type="Stimulsoft.Report.StiStyleCondition" isKey="true">
+          <ComponentType>Text, Primitive, Image, CheckBox</ComponentType>
+          <Placement>Footer</Placement>
+          <PlacementNestedLevel>3</PlacementNestedLevel>
+          <Type>ComponentType, Placement, PlacementNestedLevel</Type>
+        </Item70>
+      </Conditions>
+      <Font>Arial,8</Font>
+      <Name>Green 100%_Footer3</Name>
+      <TextBrush>[0:0:0]</TextBrush>
+    </Green_x0020_100_x0025__Footer3>
+  </Styles>
+</StiSerializer>

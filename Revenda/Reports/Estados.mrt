@@ -1,0 +1,658 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<StiSerializer version="1.02" type="Net" application="StiReport">
+  <Dictionary Ref="1" type="Dictionary" isKey="true">
+    <BusinessObjects isList="true" count="0" />
+    <Databases isList="true" count="1">
+      <DefaultConnection Ref="2" type="Stimulsoft.Report.Dictionary.StiSqlDatabase" isKey="true">
+        <Alias>DefaultConnection</Alias>
+        <ConnectionStringEncrypted>9G75C9cNAbzpX6EI5EzjbtF0zUlOcfP1Yhgl7E0RJXvZWrWN71b7zWtb7fDhLXcf1XCbCGFnAUXtWk3sYyzgcpAMTylLWUvIQwas8XcZ4C+BbGlgTRhR3fFajI1kTCUD1Fb7iUldc4VrCdmAagSxM9l4ZYjFDEPFbFw97GNEZV6GcA==</ConnectionStringEncrypted>
+        <Name>DefaultConnection</Name>
+      </DefaultConnection>
+    </Databases>
+    <DataSources isList="true" count="4">
+      <Categories Ref="3" type="Stimulsoft.Report.Dictionary.StiSqlSource" isKey="true">
+        <Alias>Categories</Alias>
+        <Columns isList="true" count="3">
+          <value>CategoryId,System.Int32</value>
+          <value>CompanyId,System.Int32</value>
+          <value>Description,System.String</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>Categories</Name>
+        <NameInSource>DefaultConnection</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>select * from Categories</SqlCommand>
+      </Categories>
+      <CitiesView Ref="4" type="Stimulsoft.Report.Dictionary.StiSqlSource" isKey="true">
+        <Alias>CitiesView</Alias>
+        <Columns isList="true" count="3">
+          <value>CityId,System.Int32</value>
+          <value>Name,System.String</value>
+          <value>StateName,System.String</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>CitiesView</Name>
+        <NameInSource>DefaultConnection</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>select * from CitiesView order by CityId</SqlCommand>
+      </CitiesView>
+      <Estadoes Ref="5" type="Stimulsoft.Report.Dictionary.StiSqlSource" isKey="true">
+        <Alias>Estadoes</Alias>
+        <Columns isList="true" count="2">
+          <value>EstadoId,System.Int32</value>
+          <value>Name,System.String</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>Estadoes</Name>
+        <NameInSource>DefaultConnection</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>select * from Estadoes order by EstadoId</SqlCommand>
+      </Estadoes>
+      <Cities Ref="6" type="Stimulsoft.Report.Dictionary.StiSqlSource" isKey="true">
+        <Alias>Cities</Alias>
+        <Columns isList="true" count="3">
+          <value>CityId,System.Int32</value>
+          <value>EstadoId,System.Int32</value>
+          <value>Name,System.String</value>
+        </Columns>
+        <CommandTimeout>30</CommandTimeout>
+        <Dictionary isRef="1" />
+        <Name>Cities</Name>
+        <NameInSource>DefaultConnection</NameInSource>
+        <Parameters isList="true" count="0" />
+        <SqlCommand>select * from Cities order by CityId</SqlCommand>
+      </Cities>
+    </DataSources>
+    <Relations isList="true" count="1">
+      <CidadesPorEstado Ref="7" type="DataRelation" isKey="true">
+        <Alias>CidadesPorEstado</Alias>
+        <ChildColumns isList="true" count="1">
+          <value>EstadoId</value>
+        </ChildColumns>
+        <ChildSource isRef="6" />
+        <Dictionary isRef="1" />
+        <Name>CidadesPorEstado</Name>
+        <NameInSource>CidadesPorEstado</NameInSource>
+        <ParentColumns isList="true" count="1">
+          <value>EstadoId</value>
+        </ParentColumns>
+        <ParentSource isRef="5" />
+      </CidadesPorEstado>
+    </Relations>
+    <Report isRef="0" />
+    <Resources isList="true" count="0" />
+    <Variables isList="true" count="2">
+      <value>,V1,Todos_x0020_:,Todos_x0020_os_x0020_Estados,System.Boolean,true,False,False,True,False</value>
+      <value>,V2,Selecionar_x0020_Estado_x0020_:,Selecionar_x0020_Estado,System.String,,False,False,True,False,_x003C__x003F_xml_x0020_version_x003D__x0022_1.0_x0022__x0020_encoding_x003D__x0022_utf-16_x0022__x0020_standalone_x003D__x0022_yes_x0022__x003F__x003E__x003C_StiSerializer_x0020_version_x003D__x0022_1.02_x0022__x0020_type_x003D__x0022_Net_x0022__x0020_application_x003D__x0022_State_x0022__x003E__x003C_ItemsInitializationType_x003E_Columns_x003C__x002F_ItemsInitializationType_x003E__x003C_KeysColumn_x003E_Estadoes.Name_x003C__x002F_KeysColumn_x003E__x003C_BindingVariable_x0020_isNull_x003D__x0022_true_x0022__x0020__x002F__x003E__x003C_Keys_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_Values_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_ValuesBinding_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C__x002F_StiSerializer_x003E_</value>
+    </Variables>
+  </Dictionary>
+  <EngineVersion>EngineV2</EngineVersion>
+  <GlobalizationStrings isList="true" count="0" />
+  <MetaTags isList="true" count="0" />
+  <Pages isList="true" count="1">
+    <Page1 Ref="8" type="Page" isKey="true">
+      <Border>None;Black;2;Solid;False;4;Black</Border>
+      <Brush>Transparent</Brush>
+      <Components isList="true" count="8">
+        <PageHeaderBand1 Ref="9" type="PageHeaderBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,0.4,19,3.2</ClientRectangle>
+          <Components isList="true" count="4">
+            <ReportTitleText Ref="10" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5.6,0.2,8.8,1.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,20,Bold</Font>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>ReportTitleText</Name>
+              <Page isRef="8" />
+              <Parent isRef="9" />
+              <Text>Lista de Estados/Cidades</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </ReportTitleText>
+            <Text2 Ref="11" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>17.2,0.4,1.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text2</Name>
+              <Page isRef="8" />
+              <Parent isRef="9" />
+              <Text>{Today}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextFormat Ref="12" type="DateFormat" isKey="true">
+                <StringFormat>dd/MM/yyyy</StringFormat>
+              </TextFormat>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text2>
+            <Image1 Ref="13" type="Image" isKey="true">
+              <Border>All;Black;1;Solid;False;4;Black</Border>
+              <Brush>[12:12:12]</Brush>
+              <ClientRectangle>0,0,4.78,2.78</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <HorAlignment>Center</HorAlignment>
+              <ImageBytes>/9j/4AAQSkZJRgABAQEAYABgAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAEAAAAAAAD/
+2wBDAAIBAQIBAQICAgICAgICAwUDAwMDAwYEBAMFBwYHBwcGBwcICQsJCAgKCAcHCg0KCgsMDAwM
+BwkODw0MDgsMDAz/2wBDAQICAgMDAwYDAwYMCAcIDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM
+DAwMDAwMDAwMDAwMDAwMDAwMDAwMDAz/wAARCAC8ANQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEA
+AAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJx
+FDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNk
+ZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJ
+ytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQF
+BgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMz
+UvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3
+eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna
+4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD8Uf232P8Aw2j8Xv8AsddZ/wDS6avLtxr0
+/wDbf/5PS+L3/Y66z/6XTV5fQAu40bjSUUALuNG40lFAC7jRuNJRQAu40bjSUUALuNG40lFAC7jR
+uNJRQAu40bjSUUALuNG40lFAC7jRuNJRQAu40bjSUUALuNG40lFAC7jRuNJRQApODRSHrRQB6h+2
+/wD8npfF7/sddZ/9Lpq8vr1D9t//AJPS+L3/AGOus/8ApdNXl9ABRRRQAUUUUAFFFFABRRRjNABR
+RRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAB60UHrRQB6h+2//AMnpfF7/ALHXWf8A0umr
+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
+DM79lm0ZQvjL46/MoY513Tev/gvooA//2Q==</ImageBytes>
+              <Margins>0,0,0,0</Margins>
+              <Name>Image1</Name>
+              <Page isRef="8" />
+              <Parent isRef="9" />
+              <VertAlignment>Center</VertAlignment>
+            </Image1>
+            <HorizontalLinePrimitive2 Ref="14" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>0,3.2,19,0.0254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="15" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Name>HorizontalLinePrimitive2</Name>
+              <Page isRef="8" />
+              <Parent isRef="9" />
+              <StartCap Ref="16" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive2>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>PageHeaderBand1</Name>
+          <Page isRef="8" />
+          <Parent isRef="8" />
+        </PageHeaderBand1>
+        <PageFooterBand1 Ref="17" type="PageFooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,25.9,19,1.8</ClientRectangle>
+          <Components isList="true" count="2">
+            <Text3 Ref="18" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0.1,19,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <Guid>0f60cf83caa8407f931f3212ce4900de</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text3</Name>
+              <Page isRef="8" />
+              <Parent isRef="17" />
+              <Text>Página : {PageNofMThrough}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text3>
+            <HorizontalLinePrimitive1 Ref="19" type="HorizontalLinePrimitive" isKey="true">
+              <ClientRectangle>0,0.1,19,0.0254</ClientRectangle>
+              <Color>Black</Color>
+              <EndCap Ref="20" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </EndCap>
+              <Guid>fbc63bfaf44f4983bcef2325efd8e063</Guid>
+              <Name>HorizontalLinePrimitive1</Name>
+              <Page isRef="8" />
+              <Parent isRef="17" />
+              <StartCap Ref="21" type="Cap" isKey="true">
+                <Color>Black</Color>
+              </StartCap>
+            </HorizontalLinePrimitive1>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>PageFooterBand1</Name>
+          <Page isRef="8" />
+          <Parent isRef="8" />
+        </PageFooterBand1>
+        <ReportTitle Ref="22" type="ReportTitleBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,4.4,19,0</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Conditions isList="true" count="0" />
+          <Name>ReportTitle</Name>
+          <Page isRef="8" />
+          <Parent isRef="8" />
+        </ReportTitle>
+        <HeaderEstadoes Ref="23" type="HeaderBand" isKey="true">
+          <Border>All;Black;1;Solid;False;4;Black</Border>
+          <Brush>EmptyBrush</Brush>
+          <ClientRectangle>0,5.2,19,0</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Conditions isList="true" count="0" />
+          <Name>HeaderEstadoes</Name>
+          <Page isRef="8" />
+          <Parent isRef="8" />
+        </HeaderEstadoes>
+        <DataEstadoes Ref="24" type="DataBand" isKey="true">
+          <Bookmark>{Estadoes.Name}</Bookmark>
+          <Border>All;Black;1;Solid;False;4;Black</Border>
+          <Brush>WhiteSmoke</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,6,19,0.8</ClientRectangle>
+          <Components isList="true" count="4">
+            <DataTextEstadoes1 Ref="25" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>2.8,0,1.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataTextEstadoes1</Name>
+              <Page isRef="8" />
+              <Parent isRef="24" />
+              <Text>{Estadoes.EstadoId}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataTextEstadoes1>
+            <DataTextEstadoes2 Ref="26" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>9.8,0,5.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataTextEstadoes2</Name>
+              <Page isRef="8" />
+              <Parent isRef="24" />
+              <Text>{Estadoes.Name}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataTextEstadoes2>
+            <HeaderTextEstadoes2 Ref="27" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>6.6,0,3.2,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderTextEstadoes2</Name>
+              <Page isRef="8" />
+              <Parent isRef="24" />
+              <Text>Nome do Estado :</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderTextEstadoes2>
+            <HeaderTextEstadoes1 Ref="28" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0,0,2.8,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,10,Bold</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderTextEstadoes1</Name>
+              <Page isRef="8" />
+              <Parent isRef="24" />
+              <Text>Código Estado :</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderTextEstadoes1>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataRelationName isNull="true" />
+          <DataSourceName>Estadoes</DataSourceName>
+          <FilterMode>Or</FilterMode>
+          <Filters isList="true" count="1">
+            <value>_x007B_Estadoes.Name_x0020__x003D__x003D__x0020_V2_x0020__x007C__x007C__x0020_V1_x007D_</value>
+          </Filters>
+          <Name>DataEstadoes</Name>
+          <Page isRef="8" />
+          <Parent isRef="8" />
+          <Sort isList="true" count="2">
+            <value>ASC</value>
+            <value>EstadoId</value>
+          </Sort>
+        </DataEstadoes>
+        <FooterEstadoes Ref="29" type="FooterBand" isKey="true">
+          <Brush>Transparent</Brush>
+          <ClientRectangle>0,7.6,19,0</ClientRectangle>
+          <Components isList="true" count="0" />
+          <Conditions isList="true" count="0" />
+          <KeepFooterTogether>False</KeepFooterTogether>
+          <Name>FooterEstadoes</Name>
+          <Page isRef="8" />
+          <Parent isRef="8" />
+          <PrintAtBottom>True</PrintAtBottom>
+        </FooterEstadoes>
+        <HeaderCities Ref="30" type="HeaderBand" isKey="true">
+          <Border>All;Black;1;Solid;False;4;Black</Border>
+          <Brush>LightGray</Brush>
+          <ClientRectangle>0,8.4,19,0.8</ClientRectangle>
+          <Components isList="true" count="2">
+            <HeaderTextCities1 Ref="31" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0,0.2,6.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderTextCities1</Name>
+              <Page isRef="8" />
+              <Parent isRef="30" />
+              <Text>Código Cidade</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderTextCities1>
+            <HeaderTextCities3 Ref="32" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>6.6,0.2,12.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8,Bold</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Margins>0,0,0,0</Margins>
+              <Name>HeaderTextCities3</Name>
+              <Page isRef="8" />
+              <Parent isRef="30" />
+              <Text>Nome da Cidade</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </HeaderTextCities3>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <Name>HeaderCities</Name>
+          <Page isRef="8" />
+          <Parent isRef="8" />
+        </HeaderCities>
+        <DataCities Ref="33" type="DataBand" isKey="true">
+          <Bookmark>{Cities.Name}</Bookmark>
+          <Brush>Transparent</Brush>
+          <BusinessObjectGuid isNull="true" />
+          <ClientRectangle>0,10,19,0.6</ClientRectangle>
+          <Components isList="true" count="2">
+            <DataTextCities1 Ref="34" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>0,0,6.6,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataTextCities1</Name>
+              <Page isRef="8" />
+              <Parent isRef="33" />
+              <Text>{Cities.CityId}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataTextCities1>
+            <DataTextCities3 Ref="35" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <CanGrow>True</CanGrow>
+              <ClientRectangle>6.6,0,12.4,0.6</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Arial,8</Font>
+              <GrowToHeight>True</GrowToHeight>
+              <Margins>0,0,0,0</Margins>
+              <Name>DataTextCities3</Name>
+              <Page isRef="8" />
+              <Parent isRef="33" />
+              <Text>{Cities.Name}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <TextQuality>Wysiwyg</TextQuality>
+              <VertAlignment>Center</VertAlignment>
+            </DataTextCities3>
+          </Components>
+          <Conditions isList="true" count="0" />
+          <DataRelationName>CidadesPorEstado</DataRelationName>
+          <DataSourceName>Cities</DataSourceName>
+          <FilterMode>Or</FilterMode>
+          <Filters isList="true" count="0" />
+          <MasterComponent isRef="24" />
+          <Name>DataCities</Name>
+          <Page isRef="8" />
+          <Parent isRef="8" />
+          <Sort isList="true" count="0" />
+        </DataCities>
+      </Components>
+      <Conditions isList="true" count="0" />
+      <Guid>baaa31c9219942dba692d5d46d672143</Guid>
+      <Margins>1,1,1,1</Margins>
+      <Name>Page1</Name>
+      <PageHeight>29.7</PageHeight>
+      <PageWidth>21</PageWidth>
+      <Report isRef="0" />
+      <Watermark Ref="36" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+        <Font>Arial,100</Font>
+        <TextBrush>[50:0:0:0]</TextBrush>
+      </Watermark>
+    </Page1>
+  </Pages>
+  <PrinterSettings Ref="37" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <ReferencedAssemblies isList="true" count="8">
+    <value>System.Dll</value>
+    <value>System.Drawing.Dll</value>
+    <value>System.Windows.Forms.Dll</value>
+    <value>System.Data.Dll</value>
+    <value>System.Xml.Dll</value>
+    <value>Stimulsoft.Controls.Dll</value>
+    <value>Stimulsoft.Base.Dll</value>
+    <value>Stimulsoft.Report.Dll</value>
+  </ReferencedAssemblies>
+  <ReportAlias>Estados</ReportAlias>
+  <ReportChanged>10/14/2018 9:02:32 PM</ReportChanged>
+  <ReportCreated>8/17/2018 9:03:53 PM</ReportCreated>
+  <ReportGuid>fef4600527e9423a9d137099638aa2e4</ReportGuid>
+  <ReportName>Estados</ReportName>
+  <ReportUnit>Centimeters</ReportUnit>
+  <ReportVersion>2018.1.8.0</ReportVersion>
+  <Script>using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Data;
+using Stimulsoft.Controls;
+using Stimulsoft.Base.Drawing;
+using Stimulsoft.Report;
+using Stimulsoft.Report.Dialogs;
+using Stimulsoft.Report.Components;
+
+namespace Reports
+{
+    public class Estados : Stimulsoft.Report.StiReport
+    {
+        public Estados()        {
+            this.InitializeComponent();
+        }
+
+        #region StiReport Designer generated code - do not modify
+		#endregion StiReport Designer generated code - do not modify
+    }
+}
+</Script>
+  <ScriptLanguage>CSharp</ScriptLanguage>
+  <Styles isList="true" count="0" />
+</StiSerializer>

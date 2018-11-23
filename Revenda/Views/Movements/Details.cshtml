@@ -1,0 +1,58 @@
+﻿@model Revenda.Models.Movement
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Movement</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Parameter.Identity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Parameter.Identity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StatementType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StatementType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Data)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Value)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MovementId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Marcela - Acessórios</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">
+                        @*<img src="~/Content/Logos/Logo.jpg" height="35" class="hidden-xs" />*@
+                        @*<img src="~/Content/Logos/download memb.jpg" height="30" class="visible-xs"  />*@
+                    </a>
+                    @*@Html.ActionLink(" ", " ", "", new { area = "" }, new { @class = "navbar-brand" })*@
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        @*<li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                        <li>@Html.ActionLink("Painel de Controle", "Index", "Dashboard")</li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastros<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Grupo de Contas", "Index", "AccountClasses")</li>
+                                <li>@Html.ActionLink("Sub-Grupo de Contas", "Index", "AccountSubClasses")</li>
+                                <li>@Html.ActionLink("Contas", "Index", "Accounts")</li>
+                                <li>@Html.ActionLink("Categorias", "Index", "Categories")</li>
+                                <li>@Html.ActionLink("Cidades", "Index", "Cities")</li>
+                                <li>@Html.ActionLink("Clientes", "Index", "Customers")</li>
+                                <li>@Html.ActionLink("Comissões", "Index", "Commissions")</li>
+                                <li>@Html.ActionLink("Cond.Pagamento", "Index", "Conditions")</li>
+                                <li>@Html.ActionLink("Empresas", "Index", "Companies")</li>
+                                <li>@Html.ActionLink("Estados", "Index", "Estados")</li>
+                                <li>@Html.ActionLink("Fornecedores", "Index", "Suppliers")</li>
+                                <li>@Html.ActionLink("Mostruários", "Index", "Warehouses")</li>
+                                <li>@Html.ActionLink("Parâmetros", "Index", "Parameters")</li>
+                                <li>@Html.ActionLink("Produtos", "Index", "Products")</li>
+                                <li>@Html.ActionLink("Usuários", "Index", "Users")</li>
+                                <li>@Html.ActionLink("Vendedores", "Index", "Sellers")</li>
+
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Movimentos<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Compras", "Index", "Purchases")</li>
+                                <li>@Html.ActionLink("Pedidos", "Index", "Orders")</li>
+                                <li>@Html.ActionLink("Vendas", "Index", "Sales")</li>
+                                <li>@Html.ActionLink("Consignações", "Index", "Consignments")</li>
+                                @*<li>@Html.ActionLink("Acerto da Compras", "Index", "Settlements")</li>*@
+                                <li>@Html.ActionLink("Lançamentos Manuais", "Index", "Entries")</li>
+                                <li>@Html.ActionLink("Ajuste Estoques", "Index", "Inventories")</li>
+                                <li>@Html.ActionLink("Movimentos", "Index", "Movements")</li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Relatórios<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Compras", "ReportForm", "Purchases")</li>
+                                <li>@Html.ActionLink("Pedidos", "ReportForm1", "Orders")</li>
+                                <li>@Html.ActionLink("Vendas", "ReportFormSales", "Sales")</li>
+                                @*<li>@Html.ActionLink("Acerto da Consignação", "Index", "Settlements")</li>*@
+                                <li>@Html.ActionLink("Fluxo de Caixa", "ReportForm", "Movements")</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - C A de Araujo Consultoria</p>
+            </footer>
+        </div>
+        @*<div style="text-align:center; display:none" id="loaderDiv">
+            <img src="~/Content/InternetSlowdown_Day.gif" width="100" />
+        </div>*@
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryui")
+        @Scripts.Render("~/bundles/bootstrap")
+        <script src="~/Scripts/moment.js"></script>
+        <script src="~/Scripts/moment-with-locales.min.js"></script>
+        @RenderSection("scripts", required: false)
+
+    </body>
+</html>
+
+

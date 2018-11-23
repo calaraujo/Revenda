@@ -1,0 +1,231 @@
+﻿@model Revenda.Models.NewPayableView
+
+@{
+    ViewBag.Title = "Contas a Pagar";
+}
+
+@*<h2>Listar</h2>*@
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h4>Contas a Pagar</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ConditionId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("ConditionId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ConditionId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div id="Status">
+                            @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SupplierId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("SupplierId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.SupplierId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group" id='Payment'>
+                    @Html.LabelFor(model => model.Payment, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <div id="Payment">
+                            @Html.EditorFor(model => model.Payment, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Payment, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                        @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn btn-success btn-sm" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+<h4>Parcelas</h4>
+<hr />
+@if (Model.Details.Count == 0)
+{
+    <h5>Nenhuma parcela adicionada.</h5>
+}
+else
+{
+    <table class="table table-bordered table-condensed table-striped">
+        <tr>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.Details[0].DueDate)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.Details[0].PaymentDate)
+            </th>
+            <th style="text-align:right">
+                @Html.DisplayNameFor(model => model.Details[0].Value)
+            </th>
+            <th style="text-align:right">
+                @Html.DisplayNameFor(model => model.Details[0].ValuePaid)
+            </th>
+            <th style="text-align:right">
+                @Html.DisplayNameFor(model => model.Details[0].Balance)
+            </th>
+            <th style="text-align:center">Ações</th>
+        </tr>
+
+
+        @foreach (var item in Model.Details)
+        {
+            <tr>
+                <td align="center">
+                    @Html.DisplayFor(modelItem => item.DueDate)
+                </td>
+                <td align="center">
+                    @Html.DisplayFor(modelItem => item.PaymentDate)
+                </td>
+                <td align="right">
+                    @Html.DisplayFor(modelItem => item.Value)
+                </td>
+                <td align="right">
+                    @Html.DisplayFor(modelItem => item.ValuePaid)
+                </td>
+                <td align="right">
+                    @Html.DisplayFor(modelItem => item.Balance)
+                </td>
+                <td align="center">
+                    @Html.ActionLink("Quitar", "Payment", "Settlements", new { id = item.PayableDetailId },
+                        new
+                        {
+                            @class = "dialog-window btn btn-primary btn-sm",
+                            data_toggle = "tooltip",
+                            data_placement = "top",
+                            title = "Efetuar o Pagamento"
+                        })
+                </td>
+            </tr>
+        }
+        <tr>
+            <td colspan="2" align="right">
+                <strong>Totais     </strong>
+            </td>
+
+            <td align="right">
+                <strong> @Html.DisplayFor(modelItem => Model.TotalValue) </strong>
+            </td>
+            <td align="right">
+                <strong> @Html.DisplayFor(modelItem => Model.TotalPaid) </strong>
+            </td>
+            <td align="right">
+                <strong> @Html.DisplayFor(modelItem => Model.TotalBalance) </strong>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+}
+
+<div class="modal fade" id="Payments" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2 class="modal-title">Pagamentos</h2>
+            </div>
+            <div class="modal-body"><div class="te">Aguarde por favor  ...</div></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>                
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/Mascaras")
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("body").on("click", "a.dialog-window", null, function (e) {
+            e.preventDefault();
+            var $link = $(this);
+            var title = $link.text();
+            //$('#Payments .modal-title').html(title);
+            var url = $(this).attr('href');
+            if (url.indexOf('#') == 0) {
+                $('#Payments').modal('show');
+            }
+            else {
+                $.get(url, function (data) {
+                    $('#Payments .te').html(data);
+                    $('#Payments').modal();
+                }).success(function () { $('input:text:visible:first').focus(); });
+                //$('#Payments').modal('hide');
+            }
+        });
+    });
+
+    $(function () {
+        $("#Status").prop({ disabled: true });
+    });
+
+    $(function () {
+        $("#Payment").prop({ disabled: true });
+    });
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
+
+    $(document).ready(function () {
+        $(".datepicker").datepicker({
+            autoclose: true,
+            changeMonth: true,
+            changeYear: true,
+            showOtherMonths: true,
+            selectOtherMonths: true,
+            dateFormat: 'dd/mm/yy',
+            dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+            dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+            dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+            monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+            nextText: 'Proximo',
+            prevText: 'Anterior'
+        }).css("display", "inline-block")
+            .next("button").button({
+                icons: { primary: "ui-icon-calendar" },
+                label: "Selecione uma data",
+                text: false
+            });
+    });
+
+    </script>
+}
+
+

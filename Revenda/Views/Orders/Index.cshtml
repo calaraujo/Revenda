@@ -1,0 +1,72 @@
+﻿@model PagedList.IPagedList<Revenda.Models.Order>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Pedidos";
+}
+
+<h2>Pedidos</h2>
+
+<p>
+    @Html.ActionLink("Novo", "Create", new { }, new { @class = "btn-primary btn-sm" })
+</p>
+<table class="table table-condensed table-striped" >
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Company.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Condition.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Customer.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Seller.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().OrderDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Remarks)
+        </th>
+        <th style="text-align:left">Ações</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Company.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Condition.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Seller.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remarks)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.OrderId }, new { @class = "btn btn-warning btn-sm" })
+            @Html.ActionLink("Detalhes", "Details", new { id = item.OrderId }, new { @class = "btn btn-info btn-sm" })
+            @Html.ActionLink("Excluir", "Delete", new { id = item.OrderId }, new { @class = "btn btn-danger btn-sm" })
+            @Html.ActionLink("Imprimir", "ReportForm", new { id = item.OrderId }, new { @class = "btn btn-primary btn-sm" })
+        </td>
+    </tr>
+}
+
+</table>
+Página : @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new
+{
+    page,
+    sortOrder =
+    ViewBag.CurrentSort,
+    currentFilter = ViewBag.CurrentFilter
+}))

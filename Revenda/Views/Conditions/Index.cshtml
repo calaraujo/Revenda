@@ -1,0 +1,61 @@
+﻿@model PagedList.IPagedList<Revenda.Models.Condition>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Condições de Pagamento";
+}
+
+<h2>Condições de Pagamento</h2>
+
+<p>
+    @Html.ActionLink("   Novo   ", "Create", new { }, new { @class = "btn-primary btn-sm" }) &nbsp;
+    @Html.ActionLink("   Lista   ", "ReportForm", new { }, new { @class = "btn-warning btn-sm" })
+</p>
+<table class="table table-condensed table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Interval)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().SupplierCondition)
+        </th>
+        <th>Ações</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Interval)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SupplierCondition)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.ConditionId }, new { @class = "btn btn-warning btn-sm" })
+                @Html.ActionLink("Detalhes", "Details", new { id = item.ConditionId }, new { @class = "btn btn-info btn-sm" })
+                @Html.ActionLink("Excluir", "Delete", new { id = item.ConditionId }, new { @class = "btn btn-danger btn-sm" })
+            </td>
+        </tr>
+    }
+
+</table>
+Página : @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new
+{
+    page,
+    sortOrder =
+    ViewBag.CurrentSort,
+    currentFilter = ViewBag.CurrentFilter
+}))

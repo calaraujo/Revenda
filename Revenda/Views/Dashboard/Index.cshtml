@@ -1,0 +1,477 @@
+﻿@{
+    ViewBag.Title = "Painel de Controle";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <style>
+        #chart_container {
+            border: 1px solid #ddd;
+            padding: 1px;
+            border-radius: 4px;
+        }
+
+        #chart_container1 {
+            border: 1px solid #ddd;
+            padding: 1px;
+            border-radius: 4px;
+        }
+    </style>
+    <p></p>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-comments fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge" id="CountCustomers">
+                                    <span>
+                                        @if (ViewBag.CountCustomers != null)
+                                        {
+                                            @ViewBag.CountCustomers;
+                                        }
+                                    </span>
+                                </div>
+                                <div>Clientes</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="viewDetails" data-type="customers">
+                        <div class="panel-footer">
+                            <span class="pull-left"> Detalhes </span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-shopping-cart fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge" id="CountProducts">
+                                    <span>
+                                        @if (ViewBag.CountProducts != null)
+                                        {
+                                            @ViewBag.CountProducts;
+                                        }
+                                    </span>
+                                </div>
+                                <div>Produtos</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="viewDetails" data-type="products">
+                        <div class="panel-footer">
+                            <span class="pull-left"> Detalhes </span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-credit-card-alt fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge" id="CountPurchases">
+                                    <span>
+                                        @if (ViewBag.CountPurchases != null)
+                                        {
+                                            @ViewBag.CountPurchases;
+                                        }
+                                    </span>
+                                </div>
+                                <div>Compras</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="viewProccess" data-type="purchases">
+                        <div class="panel-footer">
+                            <span class="pull-left"> Detalhes </span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-warning">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-gift fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge" id="CountConsignations">
+                                    <span>
+                                        @if (ViewBag.CountConsignations != null)
+                                        {
+                                            @ViewBag.CountConsignations;
+                                        }
+                                    </span>
+                                </div>
+                                <div>Consignações</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="viewProccess" data-type="consignments">
+                        <div class="panel-footer">
+                            <span class="pull-left"> Detalhes </span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-keyboard-o fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge" id="CountOrders">
+                                    <span>
+                                        @if (ViewBag.CountOrders != null)
+                                        {
+                                            @ViewBag.CountOrders;
+                                        }
+                                    </span>
+                                </div>
+                                <div>Pedidos</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="viewProccess" data-type="orders">
+                        <div class="panel-footer">
+                            <span class="pull-left"> Detalhes </span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-money fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge" id="CountSales">
+                                    <span>
+                                        @if (ViewBag.CountSales != null)
+                                        {
+                                            @ViewBag.CountSales;
+                                        }
+                                    </span>
+                                </div>
+                                <div>Vendas</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="viewProccess" data-type="sales">
+                        <div class="panel-footer">
+                            <span class="pull-left"> Detalhes </span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-check fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge" id="CountEntries">
+                                    <span>
+                                        @if (ViewBag.CountEntries != null)
+                                        {
+                                            @ViewBag.CountEntries;
+                                        }
+                                    </span>
+                                </div>
+                                <div>Lançamentos</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="viewProccess" data-type="entries">
+                        <div class="panel-footer">
+                            <span class="pull-left"> Detalhes </span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-warning">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-book fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge" id="CountAccounts">
+                                    <span>
+                                        @if (ViewBag.CountAccounts != null)
+                                        {
+                                            @ViewBag.CountAccounts;
+                                        }
+                                    </span>
+                                </div>
+                                <div>Contas</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="viewDetails" data-type="accounts">
+                        <div class="panel-footer">
+                            <span class="pull-left"> Detalhes </span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="width:1250px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLabel"> <span class="glyphicon glyphicon-search"></span> Detalhes </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div> <!-- MODEL HEADER-->
+                <div class="modal-body">
+                </div> <!-- MODAL BODY-->
+            </div>
+        </div>
+    </div>
+
+    @*<div class="container">
+        <div class="col-md-6">
+            <div id="chart_container">
+                <canvas id="bar_chart"></canvas>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div id="chart_container1">
+                <canvas id="pie_chart"></canvas>
+            </div>
+        </div>
+    </div>*@
+
+    <div class="container">
+        <div class="col-md-6">
+            <div>
+                <img src="@Url.Action("ChartColumn1")" alt="Chart" />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div>
+                <img src="@Url.Action("ChartColumn")" alt="Chart1" />
+            </div>
+        </div>
+    </div>
+}
+@section Scripts
+{
+            @Scripts.Render("~/bundles/jqueryval")
+            @Scripts.Render("~/bundles/Mascaras")
+
+            <script type="text/javascript">
+
+
+                $(document).ready(function () {
+
+                    var datachart = {
+                        labels: [],
+                        datasets: [
+                            {
+                                label: "Previsto",
+                                backgroundColor: "rgba(255, 15, 31, 0.99)",
+                                borderColor: "rgba(220,220,220,0.7)",
+                                borderWidth: 1,
+                                hoverBackgroundColor: "rgba(255, 184, 188, 0.99)",
+                                hoverBorderColor: "rgba(220,220,220,0.5)",
+                                data: []
+                            },
+                            {
+                                label: "Realizado",
+                                backgroundColor: "rgba(80, 11, 254, 0.99)",
+                                borderColor: "rgba(151,187,205,0.7)",
+                                borderWidth: 1,
+                                hoverBackgroundColor: "rgba(187, 172, 226, 1)",
+                                hoverBorderColor: "rgba(151,187,205,0.5)",
+                                data: []
+                            }
+                        ]
+                    };
+
+                    //var datachart1 = {
+                    //    labels: [],
+                    //    datasets: [
+                    //        {
+                    //            label: '',
+                    //            backgroundColor: [
+                    //                "#2ecc71",
+                    //                "#3498db",
+                    //                "#95a5a6",
+                    //                "#9b59b6",
+                    //                "#f1c40f"
+                    //            ],
+                    //            data: []
+                    //        }
+                    //    ]
+                    //};
+
+                    //$.getJSON("/Dashboard/GetData/", function (data) {
+                    //    $.each(data, function (i, item) {
+                    //        datachart.labels.push(item.Month);
+                    //        datachart.datasets[0].data.push(item.Predictable);
+                    //        datachart.datasets[1].data.push(item.Actual);
+                    //    })
+                    //    var ctx = document.getElementById("bar_chart").getContext("2d");
+
+                    //    var myBarChart = new Chart(ctx,
+                    //        {
+                    //            type: 'bar',
+                    //            data: datachart,
+                    //            options:
+                    //                {
+                    //                    title: {
+                    //                        display: true,
+                    //                        text: 'Fluxo de Caixa'
+                    //                    }
+                    //                }
+                    //        });
+                    //});
+
+                //    $.ajax({
+                //        type: 'GET',
+                //        url: "/Dashboard/GetData/",
+                //        //data: data,
+                //        async: false,
+                //        beforeSend: function (xhr) {
+                //            if (xhr && xhr.overrideMimeType) {
+                //                xhr.overrideMimeType('application/json;charset=utf-8');
+                //            }
+                //        },
+                //        dataType: 'json',
+                //        success: function (data) {
+                //            $.each(data, function (i, item) {
+                //                datachart.labels.push(item.Month);
+                //                datachart.datasets[0].data.push(item.Predictable);
+                //                datachart.datasets[1].data.push(item.Actual);
+                //            })
+                //            var ctx = document.getElementById("bar_chart").getContext("2d");
+
+                //            var myBarChart = new Chart(ctx,
+                //                {
+                //                    type: 'bar',
+                //                    data: datachart,
+                //                    options:
+                //                        {
+                //                            title: {
+                //                                display: true,
+                //                                text: 'Fluxo de Caixa'
+                //                            }
+                //                        }
+                //                });
+                //        }
+                //});
+
+            //$.getJSON("/Dashboard/GetStock/", function (data) {
+            //    $.each(data, function (i, item) {
+            //        datachart1.labels.push(item.ProductCode);
+            //        datachart1.datasets[0].data.push(item.Stock);
+            //    })
+            //    var ctx1 = document.getElementById("pie_chart").getContext("2d");
+
+            //    var myBarChart = new Chart(ctx1,
+            //        {
+            //            type: 'pie',
+            //            data: datachart1,
+            //            options:
+            //                {
+            //                    title: {
+            //                        display: true,
+            //                        text: 'Maiores Estoques'
+            //                    }
+            //                }
+            //        });
+            //});
+
+            //View Details Button
+            $(".viewDetails").click(function () {
+
+                $(".modal-body").html('');
+
+                $.ajax({
+
+                    type: 'GET',
+                    url: '@Url.Action("GetDetails", "Dashboard")',
+                    data: { type: $(this).attr("data-type") },
+                    success: function (response) {
+                        $(".modal-body").html(response);
+                        $("#exampleModal").modal('show');
+                    },
+                    error: function () {
+                        alert("Something wrong");
+                    }
+
+                });
+
+            });
+
+            //View Proccess Button
+            $(".viewProccess").click(function () {
+
+                $(".modal-body").html('');
+
+                $.ajax({
+
+                    type: 'GET',
+                    url: '@Url.Action("GetProccess", "Dashboard")',
+                    data: { type: $(this).attr("data-type") },
+                    success: function (response) {
+                        $(".modal-body").html(response);
+                        $("#exampleModal").modal('show');
+                    },
+                    error: function () {
+                        alert("Something wrong");
+                    }
+
+                });
+
+            });
+
+        });
+            </script>
+        }

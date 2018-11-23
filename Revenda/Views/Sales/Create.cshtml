@@ -1,0 +1,314 @@
+﻿@model Revenda.Models.NewSaleView
+
+@{
+    ViewBag.Title = "Nova Venda";
+}
+
+<h2>Criar Venda</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <br />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CustomerId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("CustomerId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CustomerId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.WarehouseId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("WarehouseId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.WarehouseId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                        @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ConditionId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("ConditionId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ConditionId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SellerId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("SellerId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.SellerId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Remarks, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Gravar" class="btn-primary btn-sm" />
+                        @Html.ActionLink("+ Produto", "AddProduct", "Sales", new { },
+                            new { @class = "dialog-window btn btn-info btn-sm" })
+                        @Html.ActionLink("Pedido", "SearchOrder", "Sales", new { },
+                            new { @class = "dialog-window btn btn-warning btn-sm" })
+                        @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn btn-success btn-sm" })                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+    <table id="vendas" class="table table-bordered table-condensed table-striped table-hover table-responsive" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Details[0].Product.Image)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Details[0].Product.ProductCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Details[0].Description)
+                </th>
+                <th style="text-align:right">
+                    @Html.DisplayNameFor(model => model.Details[0].Product.Price)
+                </th>
+                <th style="text-align:right">
+                    @Html.DisplayNameFor(model => model.Details[0].Quantity)
+                </th>
+                <th style="text-align:right">
+                    @Html.DisplayNameFor(model => model.Details[0].Value)
+                </th>
+                <th style="text-align:center">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Details)
+            {
+                <tr>
+                    <td>
+                        @if (!string.IsNullOrEmpty(item.Product.Image))
+                        {
+                            <img src="@Url.Content(item.Product.Image)" alt="Image" style="width:50px;height:50px;max-width:100%;height:auto;" />
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.ProductCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td align="right">
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td align="right">
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>
+                    <td align="right">
+                        @Html.DisplayFor(modelItem => item.Value)
+                    </td>
+                    <td align="center">
+                        @Html.ActionLink("Excluir", "DeleteProduct", new { id = item.ProductId }, new { @class = "btn btn-danger btn-sm", onclick = "return confirm('Excluir ? Tem Certeza ?')" })
+                        @*<button type="button" class="dialog-window btn btn-danger" data-id="@item.ProductId">Excluir</button>*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tr>
+            <td colspan="4" align="right">
+                <strong>Total     </strong>
+            </td>
+            <td align="right">
+                <strong> @Html.DisplayFor(modelItem => Model.TotalQuantity) </strong>
+            </td>
+            <td align="right">
+                <strong> @Html.DisplayFor(modelItem => Model.TotalValue) </strong>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+
+
+<div class="modal fade" id="DeleteProduct" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2"
+     aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2 class="modal-title">Excluir Produto</h2>
+            </div>
+            <div class="modal-body">
+                <div class="te">
+                    Excluir Registro? Tem Certeza ?
+                </div>
+                <div id="response">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="SearchOrder" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2 class="modal-title">Pesquisar Pedidos</h2>
+            </div>
+            <div class="modal-body"><div class="te">Aguarde por favor  ...</div></div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="AddProduct" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel1" aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2 class="modal-title">Selecionar Produtos</h2>
+            </div>
+            <div class="modal-body">
+                <div class="te">Aguarde por favor  ...</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts 
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/Mascaras")
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("body").on("click", "a.dialog-window", null, function (e) {
+                e.preventDefault();
+                var $link = $(this);
+                var title = $link.text();
+                $('#SearchOrder .modal-title').html(title);
+                var url = $(this).attr('href');
+                if (url.indexOf('#') == 0) {
+                    $('#SearchOrder').modal('show');
+                }
+                else {
+                    $.get(url, function (data) {
+                        $('#SearchOrder .te').html(data);
+                        $('#SearchOrder').modal();
+                    }).success(function () { $('input:text:visible:first').focus(); });
+                    $('#SearchOrder').modal('hide');
+                }
+
+            });
+
+            $("body").on("click", "a.dialog-window", null, function (e) {
+                e.preventDefault();
+                var $link = $(this);
+                var title = $link.text();
+                $('#AddProduct .modal-title').html(title);
+                var url = $(this).attr('href');
+                if (url.indexOf('#') == 0) {
+                    $('#AddProduct').modal('show');
+                }
+                else {
+                    $.get(url, function (data) {
+                        $('#AddProduct .te').html(data);
+                        $('#AddProduct').modal();
+                    }).success(function () { $('input:text:visible:first').focus(); });
+                    $('#AddProduct').modal('hide');
+                }
+            });
+
+            $("body").on("click", "button.dialog-window", null, function (e) {
+                var htmlContent = '<br /><a href="@Url.Action("DeleteProduct", "Sales")/' +
+                    $(this).data('id') +
+                    '" class="btn btn-primary btn-sm">Sim</a>&nbsp&nbsp&nbsp&nbsp<button type="button" id="btnNo" class="btn btn-danger btn-sm" data-dismiss="modal" aria-hidden="true">Não</button>';
+                $("#response").html(htmlContent);
+                $('#DeleteProduct').modal('show');
+                $('#DeleteProduct').modal('hide');
+
+            });
+
+            $(".datepicker").datepicker(
+                {
+                    autoclose: true,
+                    changeMonth: true,
+                    changeYear: true,
+                    showOtherMonths: true,
+                    selectOtherMonths: true,
+                    dateFormat: 'dd/mm/yy',
+                    dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+                    dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+                    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+                    monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                    monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                    nextText: 'Proximo',
+                    prevText: 'Anterior'
+                }).css("display", "inline-block")
+                .next("button").button(
+                    {
+                        icons: { primary: "ui-icon-calendar" },
+                        label: "Selecione uma data",
+                        text: false
+                });
+
+            $('#vendas').DataTable({
+                dom: "<lf<t>ip>",
+                "lengthMenu": [[4, 8, 12, 50, -1], [4, 8, 12, 50, "Todos"]],
+                language: {
+                    "sEmptyTable": "Nenhum registro encontrado",
+                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                    "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sInfoThousands": ".",
+                    "sLengthMenu": "_MENU_ resultados por página",
+                    "sLoadingRecords": "Carregando...",
+                    "sProcessing": "Processando...",
+                    "sZeroRecords": "Nenhum registro encontrado",
+                    "sSearch": "Pesquisar",
+                    "oPaginate": {
+                        "sNext": "Próximo",
+                        "sPrevious": "Anterior",
+                        "sFirst": "Primeiro",
+                        "sLast": "Último"
+                    },
+
+                    "oAria": {
+                        "sSortAscending": ": Ordenar colunas de forma ascendente",
+                        "sSortDescending": ": Ordenar colunas de forma descendente"
+                    }
+                },
+            });
+        });
+    </script>
+}

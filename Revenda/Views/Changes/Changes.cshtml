@@ -1,0 +1,201 @@
+﻿@model Revenda.Models.ChangePurchaseView
+
+@{
+    ViewBag.Title = "Compras";
+}
+
+<h2>Compras - Trocas</h2>
+
+
+@using (Html.BeginForm())
+
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Trocas</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.PurchaseId)
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SupplierId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("SupplierId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.SupplierId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.WarehouseId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("WarehouseId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.WarehouseId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control date" } })
+                        @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ConditionId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("ConditionId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ConditionId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Remarks, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Gravar" class="btn-primary btn-sm" />
+                        @*@Html.ActionLink("Gravar", "Changes", "Changes", new { }, new { @class = "dialog-window btn btn-info" })*@
+                        @Html.ActionLink("Adicionar", "AddProductPurchase", "Changes", new { id = Model.PurchaseId }, new { @class = "dialog-window btn btn-info" })
+                        @Html.ActionLink("Voltar", "Index", "Purchases", new { }, new { @class = "btn btn-success btn-sm" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<h4>Details</h4>
+<hr />
+@if (Model.Details.Count == 0)
+{
+    <h5>Não há itens de compra adicionados.</h5>
+}
+else
+{
+    <table class="table table-bordered table-condensed table-striped table-hover table-responsive">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Details[0].Product.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Details[0].Product.ProductCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Details[0].Description)
+            </th>
+            <th style="text-align:right">
+                @Html.DisplayNameFor(model => model.Details[0].Cost)
+            </th>
+            <th style="text-align:right">
+                @Html.DisplayNameFor(model => model.Details[0].Quantity)
+            </th>
+            <th style="text-align:right">
+                @Html.DisplayNameFor(model => model.Details[0].Value)
+            </th>
+            <th style="text-align:center">Ações</th>
+        </tr>
+
+        @foreach (var item in Model.Details)
+        {
+        <tr>
+            <td>
+                @if (!string.IsNullOrEmpty(item.Product.Image))
+                {
+                    <img src="@Url.Content(item.Product.Image)" alt="Image" style="width:50px;height:50px;max-width:100%;height:auto;" />
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.ProductCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td align="right">
+                @Html.DisplayFor(modelItem => item.Cost)
+            </td>
+            <td align="right">
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td align="right">
+                @Html.DisplayFor(modelItem => item.Value)
+            </td>
+            <td align="center">
+                @Html.ActionLink("Excluir", "ChangeProduct", "Changes", new { id = item.ProductId, Pedido = Model.PurchaseId },
+               new { @class = "btn btn-danger btn-sm", onclick = "return confirm('Excluir ? Tem Certeza ?')" })
+            </td>
+        </tr>
+        }
+        <tr>
+            <td colspan="4" align="right">
+                <strong>Total</strong>
+            </td>
+            <td align="right">
+                <strong> @Html.DisplayFor(modelItem => Model.TotalQuantity) </strong>
+            </td>
+            <td align="right">
+                <strong> @Html.DisplayFor(modelItem => Model.TotalValue) </strong>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+}
+
+<div class="modal fade" id="AddProductPurchase" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2 class="modal-title"></h2>
+            </div>
+            <div class="modal-body"><div class="te">Please wait...</div></div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/Mascaras")
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $(function () {
+                $("#datepicker").datepicker();
+            });
+
+            $("body").on("click", "a.dialog-window", null, function (e) {
+                e.preventDefault();
+                var $link = $(this);
+                var title = $link.text();
+                $('#AddProductPurchase .modal-title').html(title);
+                var url = $(this).attr('href');
+                if (url.indexOf('#') == 0) {
+                    $('#AddProductPurchase').modal('show');
+                }
+                else {
+                    $.get(url, function (data) {
+                        $('#AddProductPurchase .te').html(data);
+                        $('#AddProductPurchase').modal();
+                    }).success(function () { $('input:text:visible:first').focus(); });
+
+                }
+            });
+        });
+
+    </script>
+}
+

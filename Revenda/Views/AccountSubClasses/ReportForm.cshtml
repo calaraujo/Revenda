@@ -1,0 +1,30 @@
+﻿@using Stimulsoft.Report.Mvc;
+
+@model Revenda.Models.AccountSubClass
+
+@{
+    ViewBag.Title = "Sub-Grupo de Contas";
+}
+<h4>Sub-Grupo de Contas</h4>
+<hr />
+@Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn btn-success btn-sm" })
+<p>
+
+</p>
+<table>
+    <tr>
+        <td style="width: 150%;" valign="top">
+            @Html.Stimulsoft().StiMvcViewer(new StiMvcViewerOptions()
+       {
+           Actions =
+                    {
+                        GetReport = "ReportForm",
+                        ViewerEvent = "ViewerEvent",
+                        DesignReport = "DesignReport"
+                    },
+           Localization = "~/Localization/pt-BR.xml"
+       })
+        </td>
+    </tr>
+</table>
+

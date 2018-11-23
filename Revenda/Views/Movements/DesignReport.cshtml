@@ -1,0 +1,34 @@
+﻿@using Stimulsoft.Report.Mvc;
+
+@model Revenda.Models.Movement
+
+@{
+    ViewBag.Title = "Fluxo de Caixa";
+}
+<h4>Fluxo de Caixa</h4>
+
+<p>
+
+</p>
+<table>
+    <tr>
+        <td>
+            @Html.Stimulsoft().StiMvcDesigner("MvcDesigner1",
+
+                    new StiMvcDesignerOptions() {
+
+                    Actions =
+
+                    {
+
+                    GetReport = "Design",
+
+                    DesignerEvent = "DesignerEvent"
+
+                    }
+
+                })
+        </td>
+    </tr>
+</table>
+

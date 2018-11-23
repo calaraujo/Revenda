@@ -1,0 +1,137 @@
+﻿@model PagedList.IPagedList<Revenda.Models.Sale>
+@using PagedList.Mvc;
+
+
+@{
+    ViewBag.Title = "Vendas";
+}
+
+<h2>Vendas</h2>
+
+<p>
+    @Html.ActionLink("Nova Venda", "Create", new { }, new { @class = "btn-primary btn-sm" })
+</p>
+<table class="table table-condensed table-striped table-hover">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Company.Name)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Customer.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Warehouse.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Condition.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Seller.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Remarks)
+        </th>
+        <th></th>
+        <th>Ações</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Company.Name)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Warehouse.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Condition.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Seller.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remarks)
+        </td>
+        <td></td>
+        <td>
+            @Html.ActionLink(" ", "Edit", new { id = item.SaleId },
+                        new
+                        {
+                            @class = "btn btn-warning btn-sm glyphicon glyphicon-edit",
+                            data_toggle = "tooltip",
+                            data_placement = "top",
+                            title = "Editar Registro"
+                        })
+            @Html.ActionLink(" ", "Details", new { id = item.SaleId },
+                        new
+                        {
+                            @class = "btn btn-info btn-sm glyphicon glyphicon-th-list",
+                            data_toggle = "tooltip",
+                            data_placement = "top",
+                            title = "Detalhes do Registro"
+                        })
+            @Html.ActionLink(" ", "Delete", new { id = item.SaleId },
+                        new
+                        {
+                            @class = "btn btn-danger btn-sm glyphicon glyphicon-trash",
+                            data_toggle = "tooltip",
+                            data_placement = "top",
+                            title = "Excluir o Registro"
+                        })
+            @Html.ActionLink(" ", "SearchReceivable", "Sales", new { id = item.SaleId },
+                         new
+                         {
+                             @class = "btn btn-success btn-sm glyphicon glyphicon-usd",
+                             data_toggle = "tooltip",
+                             data_placement = "top",
+                             title = "Gerar o Contas a Receber"
+                         })
+            @Html.ActionLink(" ", "ReportForm", new { id = item.SaleId, source="Consignments" },
+                       new
+                       {
+                           @class = "btn btn-primary btn-sm glyphicon glyphicon-print",
+                           data_toggle = "tooltip",
+                           data_placement = "top",
+                           title = "Imprimir o Pedido"
+                       })
+        </td>
+    </tr>
+}
+
+</table>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/Mascaras")
+
+    <script type="text/javascript">
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+    </script>
+
+}
+
+Página : @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new
+{
+    page,
+    sortOrder =
+    ViewBag.CurrentSort,
+    currentFilter = ViewBag.CurrentFilter
+}))

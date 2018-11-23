@@ -1,0 +1,145 @@
+﻿@model Revenda.Models.Settlement
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <div class="col-md-6">
+        <div>
+            <h4>Acerto de Compras</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Commission.Description)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Commission.Description)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Purchase.PurchaseId)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Purchase.PurchaseId)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.LowerDate)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.LowerDate)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.UpperDate)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.UpperDate)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.TotalSales)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TotalSales)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Percent)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Percent)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.CommissionValue)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CommissionValue)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Bonus)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Bonus)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.NetValue)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.NetValue)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Editar", "Edit", new { id = Model.SettlementId }, new { @class = "btn btn-warning btn-sm" })
+            @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn btn-success btn-sm" })
+        </p>
+    </div>
+    <div class="col-md-6">
+        <h4>Contas a Pagar</h4>
+        <hr />
+        @if (Model.Payable.Count == 0)
+            {
+            <h5>Nenhuma Conta a Pagar registrada.</h5>
+        }
+        else
+        {
+            <table class="table">
+                <tr>
+                    <th>
+                        Compra
+                    </th>
+                    <th>
+                        Acerto
+                    </th>
+                    <th>
+                        Data
+                    </th>
+                    <th>
+                        Status Pgto.
+                    </th>
+                    <th>
+                        Status Vencto.
+                    </th>
+                </tr>
+
+                @foreach (var item in Model.Payable.ToList())
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PurchaseId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PayableId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Payment)
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+    </div>
+</div>

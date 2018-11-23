@@ -1,0 +1,146 @@
+﻿@model IEnumerable<Revenda.Models.PayableDetail>
+
+@*@{
+    ViewBag.Title = "Contas a Pagar";
+}*@
+
+<table id="pagar" class="table table-bordered table-condensed table-striped table-hover table-responsive" style="width:100%">
+
+    <thead>
+    <tr>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.PayableDetailId)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.DueDate)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.PaymentDate)
+        </th>
+        <th style="text-align:right">
+            @Html.DisplayNameFor(model => model.Value)
+        </th>
+        <th style="text-align:right">
+            @Html.DisplayNameFor(model => model.ValuePaid)
+        </th>
+        <th style="text-align:right">
+            @Html.DisplayNameFor(model => model.Balance)
+        </th>
+        <th style="text-align:center">Ações</th>
+    </tr>
+    </thead>
+        <tbody>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td align="center">
+                @Html.DisplayFor(modelItem => item.PayableDetailId)
+            </td>
+            <td align="center">
+                @Html.DisplayFor(modeltem => item.DueDate)
+            </td>
+            <td align="center">
+                @Html.DisplayFor(modelItem => item.PaymentDate)
+            </td>
+            <td align="right">
+                @Html.DisplayFor(modelItem => item.Value)
+            </td>
+            <td align="right">
+                @Html.DisplayFor(modelItem => item.ValuePaid)
+            </td>
+            <td align="right">
+                @Html.DisplayFor(modelItem => item.Balance)
+            </td>
+            <td align="center">
+                @Html.ActionLink("Quitar", "NewPayment", "Purchases", new
+                        { id = item.PayableDetailId }, new { @class = "dialog-window btn btn-primary btn-sm" })
+            </td>
+        </tr>
+
+    }
+    </tbody>
+</table>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/Mascaras")
+
+    <script type="text/javascript">
+        //$("#contasapagar:input").attr("disabled", true);
+
+        $(document).ready(function () {
+
+            $(".datepicker").datepicker(
+                {
+                    autoclose: true,
+                    changeMonth: true,
+                    changeYear: true,
+                    showOtherMonths: true,
+                    selectOtherMonths: true,
+                    dateFormat: 'dd/mm/yy',
+                    dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+                    dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+                    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+                    monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                    monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                    nextText: 'Proximo',
+                    prevText: 'Anterior'
+                }).css("display", "inline-block")
+                .next("button").button(
+                    {
+                        icons: { primary: "ui-icon-calendar" },
+                        label: "Selecione uma data",
+                        text: false
+                    });
+
+            $("body").on("click", "a.dialog-window", null, function (e) {
+                e.preventDefault();
+                var $link = $(this);
+                var title = $link.text();
+                //$('#Payment .modal-title').html(title);
+                var url = $(this).attr('href');
+                if (url.indexOf('#') == 0) {
+                    $('#NewPayment').modal('show');
+                }
+                else {
+                    $.get(url, function (data) {
+                        $('#NewPayment .te').html(data);
+                        $('#NewPayment').modal();
+                    }).success(function () { $('input:text:visible:first').focus(); });
+
+                }
+            });
+
+            $('#pagar').DataTable({
+                dom: "<lf<t>ip>",
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+                language: {
+                    "sEmptyTable": "Nenhum registro encontrado",
+                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                    "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sInfoThousands": ".",
+                    "sLengthMenu": "_MENU_ resultados por página",
+                    "sLoadingRecords": "Carregando...",
+                    "sProcessing": "Processando...",
+                    "sZeroRecords": "Nenhum registro encontrado",
+                    "sSearch": "Pesquisar",
+                    "oPaginate": {
+                        "sNext": "Próximo",
+                        "sPrevious": "Anterior",
+                        "sFirst": "Primeiro",
+                        "sLast": "Último"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Ordenar colunas de forma ascendente",
+                        "sSortDescending": ": Ordenar colunas de forma descendente"
+                    }
+                },
+                "order": [[0, 'asc']]
+            });
+        });
+    </script>
+}

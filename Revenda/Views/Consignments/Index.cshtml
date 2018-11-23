@@ -1,0 +1,208 @@
+﻿@model IEnumerable<Revenda.Models.Consignment>
+
+@{
+    ViewBag.Title = "Vendas";
+}
+
+<h2>Consignações</h2>
+
+<p>
+    @Html.ActionLink("Nova Consignação", "Create", new { }, new { @class = "btn-primary btn-sm" })
+</p>
+
+<table id="consignments" class="table table-bordered table-condensed table-striped table-hover table-responsive" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Seller.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Warehouse.Name)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Condition.Description)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Data)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Remarks)
+            </th>*@
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Seller.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Warehouse.Name)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Condition.Description)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Remarks)
+                </td>*@
+                <td>
+                    @*@Html.ActionLink(" ", "Edit", new { id = item.ConsignmentId },
+                                new
+                                {
+                                    @class = "btn btn-warning btn-sm glyphicon glyphicon-edit",
+                                    data_toggle = "tooltip",
+                                    data_placement = "top",
+                                    title = "Editar Registro"
+                                })
+                    @Html.ActionLink(" ", "Details", new { id = item.ConsignmentId },
+                                new
+                                {
+                                    @class = "btn btn-info btn-sm glyphicon glyphicon-th-list",
+                                    data_toggle = "tooltip",
+                                    data_placement = "top",
+                                    title = "Detalhes do Registro"
+                                })*@
+                    @Html.ActionLink(" ", "Delete", new { id = item.ConsignmentId },
+                                new
+                                {
+                                    @class = "btn btn-danger btn-sm glyphicon glyphicon-trash",
+                                    data_toggle = "tooltip",
+                                    data_placement = "top",
+                                    title = "Excluir o Registro"
+                                })
+
+                    @Html.ActionLink(" ", "ReportForm", new { id = item.ConsignmentId, source="Consignments" },
+                               new
+                               {
+                                   @class = "btn btn-primary btn-sm glyphicon glyphicon-print",
+                                   data_toggle = "tooltip",
+                                   data_placement = "top",
+                                   title = "Imprimir o Pedido"
+                               })
+                    @Html.ActionLink(" ", "HitConsignment", new { id = item.ConsignmentId },
+                               new
+                               {
+                                   @class = "btn btn-success btn-sm glyphicon glyphicon-list",
+                                   data_toggle = "tooltip",
+                                   data_placement = "top",
+                                   title = "Acerto Consignação"
+                               })
+                    @Html.ActionLink(" ", "SearchReceivable", new { id = item.ConsignmentId },
+                               new
+                               {
+                                   @class = "btn btn-info btn-sm glyphicon glyphicon-usd",
+                                   data_toggle = "tooltip",
+                                   data_placement = "top",
+                                   title = "Receber"
+                               })
+                    @Html.ActionLink(" ", "CopyConsignment", new { id = item.ConsignmentId },
+                                new
+                                {
+                                    @class = "btn-warning btn-sm glyphicon glyphicon-menu-hamburger",
+                                    data_toggle = "tooltip",
+                                    data_placement = "top",
+                                    title = "Copiar Consignação"
+                                })
+                    @Html.ActionLink(" ", "ChangeConsignments", "ChangeConsignments", new { id = item.ConsignmentId },
+                                new
+                                {
+                                    @class = "btn-danger btn-sm glyphicon glyphicon-refresh",
+                                    data_toggle = "tooltip",
+                                    data_placement = "top",
+                                    title = "Trocar Produtos"
+                                })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@*if (TempData["Message"] != null)
+{
+    <script src="~/Scripts/sweetalert.js"></script>
+    <script type="text/javascript">
+        window.onload = function() {
+        alert("@(TempData["Message"] as string)");
+        };
+    </script>
+}*@
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/Mascaras")
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+
+            $("#searchReceivable").click(function () {
+                var $row = $(this).closest("tr");    // Find the row
+                var $text = $row.find("Status").text(); // Find the text
+                if ($text !== "CR Gerado") {
+                    alert("Inválido. Status não permitido.");
+                }
+            }
+            );
+
+            var table = $('#consignments').DataTable({
+                "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                    if (aData[4] === "Calculado") {
+                        $(nRow).find('td:eq(4)').css('background-color', '#06B33A')
+                        $(nRow).find('td:eq(4)').css('color', '#FCFBFB')
+                    } else if (aData[4] === "Em Aberto") {
+                        $(nRow).find('td:eq(4)').css('background-color', '#9D9B9B')
+                        $(nRow).find('td:eq(4)').css('color', '#FCFBFB')
+                    } else if (aData[4] === "CR Gerado") {
+                        $(nRow).find('td:eq(4)').css('background-color', '#FAEA05')
+                    } else if (aData[4] === "Liquidado") {
+                        $(nRow).find('td:eq(4)').css('background-color', '#0313F8')
+                        $(nRow).find('td:eq(4)').css('color', '#FCFBFB')
+                    }
+                },
+                dom: "<lf<t>ip>",
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+                language: {
+                    "sEmptyTable": "Nenhum registro encontrado",
+                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                    "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sInfoThousands": ".",
+                    "sLengthMenu": "_MENU_ resultados por página",
+                    "sLoadingRecords": "Carregando...",
+                    "sProcessing": "Processando...",
+                    "sZeroRecords": "Nenhum registro encontrado",
+                    "sSearch": "Pesquisar",
+                    "oPaginate": {
+                        "sNext": "Próximo",
+                        "sPrevious": "Anterior",
+                        "sFirst": "Primeiro",
+                        "sLast": "Último"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Ordenar colunas de forma ascendente",
+                        "sSortDescending": ": Ordenar colunas de forma descendente"
+                    }
+                },
+                select: {
+                    style: 'single',
+                },
+            });
+        });
+
+    </script>
+}

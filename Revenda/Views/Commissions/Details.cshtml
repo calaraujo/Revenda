@@ -1,0 +1,50 @@
+﻿@model Revenda.Models.Commission
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <h4>Comissões</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LowerLimit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LowerLimit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpperLimit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpperLimit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Percent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Percent)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.CommissionId }, new { @class = "btn btn-warning btn-sm" })
+    @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn btn-success btn-sm" })
+</p>

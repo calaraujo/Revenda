@@ -1,0 +1,118 @@
+﻿@model IEnumerable<Revenda.Models.Inventory>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Ajustes de Inventário</h2>
+
+<p>
+    @Html.ActionLink("   Novo   ", "Create", new { }, new { @class = "btn-primary btn-sm" }) &nbsp;
+</p>
+<table id="inventory" class="table table-bordered table-condensed table-striped table-hover table-responsive" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.ProductCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Warehouse.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stock)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.ProductCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Warehouse.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stock)
+                </td>
+                <td>
+                    @Html.ActionLink(" ", "Edit", new { id = item.InventoryId },
+                                new
+                                {
+                                    @class = "btn btn-warning btn-sm glyphicon glyphicon-edit",
+                                    data_toggle = "tooltip",
+                                    data_placement = "top",
+                                    title = "Editar Registro"
+                                })
+                    @Html.ActionLink(" ", "Details", new { id = item.InventoryId },
+                                new
+                                {
+                                    @class = "btn btn-info btn-sm glyphicon glyphicon-th-list",
+                                    data_toggle = "tooltip",
+                                    data_placement = "top",
+                                    title = "Detalhes do Registro"
+                                })
+                    @Html.ActionLink(" ", "Delete", new { id = item.InventoryId },
+                                new
+                                {
+                                    @class = "btn btn-danger btn-sm glyphicon glyphicon-trash",
+                                    data_toggle = "tooltip",
+                                    data_placement = "top",
+                                    title = "Excluir o Registro"
+                                })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/Mascaras")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+
+            table = $('#inventory').DataTable({
+                dom: "<lf<t>ip>",
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+                language: {
+                    "sEmptyTable": "Nenhum registro encontrado",
+                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                    "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sInfoThousands": ".",
+                    "sLengthMenu": "_MENU_ resultados por página",
+                    "sLoadingRecords": "Carregando...",
+                    "sProcessing": "Processando...",
+                    "sZeroRecords": "Nenhum registro encontrado",
+                    "sSearch": "Pesquisar",
+                    "oPaginate": {
+                        "sNext": "Próximo",
+                        "sPrevious": "Anterior",
+                        "sFirst": "Primeiro",
+                        "sLast": "Último"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Ordenar colunas de forma ascendente",
+                        "sSortDescending": ": Ordenar colunas de forma descendente"
+                    }
+                },
+            });
+        });
+
+    </script>
+}

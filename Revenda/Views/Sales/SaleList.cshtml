@@ -1,0 +1,136 @@
+﻿@model PagedList.IPagedList<Revenda.Models.Sale>
+@{
+    ViewBag.Title = "SaleList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading"><h4><b>Relatório Vendas por Pedido/Período De: @ViewBag.dataInicial.ToString("dd/MM/yyyy") à @ViewBag.dataFinal.ToString("dd/MM/yyyy")</b></h4></div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table">
+                    <tr>
+                        <th>Nr.Venda </th>
+                        <th>Data </th>
+                        <th>Cond.Pagamento </th>
+                        <th>Cliente </th>
+                        <th>Mostruário </th>
+                        <th>Vendedor </th>
+                        <th style="text-align:right">Quantidade</th>
+                        <th style="text-align:right">Valor Total</th>
+                    </tr>
+                    @{
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td> @Html.DisplayFor(modelItem => item.SaleId) </td>
+                                <td> @Html.DisplayFor(modelItem => item.Date) </td>
+                                <td> @Html.DisplayFor(modelItem => item.Condition.Description) </td>
+                                <td> @Html.DisplayFor(modelItem => item.Customer.FullName) </td>
+                                <td> @Html.DisplayFor(modelItem => item.Warehouse.Name) </td>
+                                <td> @Html.DisplayFor(modelItem => item.Seller.FullName) </td>
+                                <td align="right">@Html.DisplayFor(modelItem => item.TotalQuantity)</td>
+                                <td align="right">@Html.DisplayFor(modelItem => item.TotalValue)</td>
+                            </tr>
+
+                            <tr>
+                                <th></th>
+                                <th>Item Pedido </th>
+                                <th>Descrição Produto </th>
+                                <th style="text-align:right">Quantidade </th>
+                                <th style="text-align:right">Preço Unitário </th>
+                                <th style="text-align:right">Valor Total </th>
+                            </tr>
+
+                            foreach (var itens in item.SalesDetails)
+                            {
+                                <tr>
+                                    <td></td>
+                                    <td> @Html.DisplayFor(modelItem => itens.SaleDetailId) </td>
+                                    <td> @Html.DisplayFor(modelItem => itens.Product.Description) </td>
+                                    <td align="right"> @Html.DisplayFor(modelItem => itens.Quantity) </td>
+                                    <td align="right"> @Html.DisplayFor(modelItem => itens.Price) </td>
+                                    <td align="right"> @Html.DisplayFor(modelItem => itens.Value) </td>
+                                </tr>
+                            }
+                        }
+                    }
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th style="text-align:right">Total Quantidade:</th>
+                        <th style="text-align:right">@Model.Sum(t => t.TotalQuantity)</th>
+                        <th style="text-align:right">Valor Total:</th>
+                        <th style="text-align:right">@Model.Sum(t => t.TotalValue)</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td><b>@Model.Count registos de @Model.TotalItemCount</b></td>
+                        <td>@Html.ActionLink("GERAR PDF", "SaleList", new { gerarPDF = true, dataInicial = ViewBag.dataInicial, dataFinal = ViewBag.dataFinal,
+                                CustomerId = ViewBag.CustomerId, SellerId = ViewBag.SellerId })</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        @{
+            if (Model.TotalItemCount != Model.Count)
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+
+                        @if (Model.HasPreviousPage)
+                        {
+                            @Html.ActionLink("<<", "SaleList", new
+                       {
+                           pagina = 1,
+                           sortOrder = ViewBag.CurrentSort,
+                           currentFilter = ViewBag.CurrentFilter,
+                           dataInicial = ViewBag.dataInicial,
+                           dataFinal = @ViewBag.dataFinal,
+                           CustomerId = ViewBag.CustomerId,
+                           SellerId = ViewBag.SellerId
+                       })
+                            @Html.Raw(" ");
+                            @Html.ActionLink("< Anterior", "SaleList", new
+                       {
+                           pagina = Model.PageNumber - 1,
+                           sortOrder = ViewBag.CurrentSort,
+                           currentFilter = ViewBag.CurrentFilter,
+                           dataInicial = ViewBag.dataInicial,
+                           dataFinal = ViewBag.dataFinal,
+                           CustomerId = ViewBag.CustomerId,
+                           SellerId = ViewBag.SellerId
+                       })
+                        }
+                        else
+                        {
+                            @:<<
+                            @Html.Raw(" ");
+                            @:< Anterior
+                           }
+
+                        @if (Model.HasNextPage)
+                        {
+                            @Html.ActionLink("Próxima >", "SaleList", new { pagina = Model.PageNumber + 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, dataInicial = ViewBag.dataInicial, dataFinal = ViewBag.dataFinal,
+                                    CustomerId = ViewBag.CustomerId, SellerId = ViewBag.SellerId })
+                            @Html.Raw(" ");
+                            @Html.ActionLink(">>", "SaleList", new { pagina = Model.PageCount, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, dataInicial = ViewBag.dataInicial, dataFinal = ViewBag.dataFinal,
+                                    CustomerId = ViewBag.CustomerId, SellerId = ViewBag.SellerId })
+                        }
+                        else
+                        {
+                            @:Próxima >
+                            @Html.Raw(" ")
+                            @:>>
+                    }
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+
+</div>

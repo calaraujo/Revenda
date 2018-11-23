@@ -1,0 +1,162 @@
+﻿@model IEnumerable<Revenda.Models.Product>
+@{
+    ViewBag.Title = "Produtos";
+    ViewBag.sortOrder = "ProductCode";
+}
+
+<h2>Produtos</h2>
+
+<p>
+    @Html.ActionLink("Novo", "Create", new { }, new { @class = "btn-primary btn-sm" }) &nbsp;
+    @Html.ActionLink("Lista", "ReportForm", new { }, new { @class = "btn-warning btn-sm" })
+</p>
+<br>
+<table id="produtos" class="table table-striped table-bordered" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Category.Description)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Company.Name)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.ProductCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Cost)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stock)
+            </th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Description)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Company.Name)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Cost)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.Image))
+                    {
+                        <img src="@Url.Content(item.Image)" alt="Image" style="width:70px;height:70px;max-width: 100%; height: auto;" />
+                    }
+                </td>
+                <td align="center">
+                    @Html.DisplayFor(modelItem => item.Stock)
+                </td>
+                <td>
+                    @Html.ActionLink(" ", "Edit", new { id = item.ProductId },
+                        new
+                        {
+                            @class = "btn btn-warning btn-sm glyphicon glyphicon-edit",
+                            data_toggle = "tooltip",
+                            data_placement = "top",
+                            title = "Editar Produto"
+                        })
+                    @Html.ActionLink(" ", "Details", new { id = item.ProductId },
+                        new
+                        {
+                            @class = "btn btn-info btn-sm glyphicon glyphicon-th-list",
+                            data_toggle = "tooltip",
+                            data_placement = "top",
+                            title = "Detalhes do Produto"
+                        })
+                    @Html.ActionLink(" ", "Delete", new { id = item.ProductId },
+                        new
+                        {
+                            @class = "btn btn-danger btn-sm glyphicon glyphicon-trash",
+                            data_toggle = "tooltip",
+                            data_placement = "top",
+                            title = "Excluir Produto"
+                        })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/Mascaras")
+
+    <script type="text/javascript">
+
+        $('#produtos').DataTable({
+            dom: "<lf<t>ip>",
+            "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "Todos"]],
+            language: {
+                "sEmptyTable": "Nenhum registro encontrado",
+                "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                "sInfoPostFix": "",
+                "sInfoThousands": ".",
+                "sLengthMenu": "_MENU_ resultados por página",
+                "sLoadingRecords": "Carregando...",
+                "sProcessing": "Processando...",
+                "sZeroRecords": "Nenhum registro encontrado",
+                "sSearch": "Pesquisar",
+                "oPaginate": {
+                    "sNext": "Próximo",
+                    "sPrevious": "Anterior",
+                    "sFirst": "Primeiro",
+                    "sLast": "Último"
+                },
+
+                "oAria": {
+                    "sSortAscending": ": Ordenar colunas de forma ascendente",
+                    "sSortDescending": ": Ordenar colunas de forma descendente"
+                }
+            },
+            //select: {
+            //    style: 'single',
+            //}
+        });
+
+        $(document).ready(function () {
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            });
+
+
+        });
+    </script>
+}
+
+@*Página : @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Index", new
+    {
+        page,
+        sortOrder = ViewBag.sortOrder,
+        currentFilter = ViewBag.CurrentFilter
+    }))*@

@@ -1,0 +1,143 @@
+﻿@model IEnumerable<Revenda.Models.Account>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Contas</h2>
+
+<p>
+    @Html.ActionLink("   Nova   ", "Create", new { }, new { @class = "btn-primary btn-sm" }) &nbsp;
+    @Html.ActionLink("   Lista   ", "ReportForm", new { }, new { @class = "btn-warning btn-sm" })
+</p>
+<table id="contas" class="table table-bordered table-condensed table-striped table-hover table-responsive" style="width:100%">
+    <thead>
+        <tr>
+            @*<th>
+                @Html.DisplayNameFor(model => model.AccountClass.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountSubClass.Name)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.AccountCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Balance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DebitBalance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreditBalance)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.AccountClass.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountSubClass.Name)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td style="text-align:right">
+                    @Html.DisplayFor(modelItem => item.Balance)
+                </td>
+                <td style="text-align:right">
+                    @Html.DisplayFor(modelItem => item.DebitBalance)
+                </td>
+                <td style="text-align:right">
+                    @Html.DisplayFor(modelItem => item.CreditBalance)
+                </td>
+                <td>
+                    @Html.ActionLink(" ", "Edit", new { id = item.AccountId },
+                                new
+                                {
+                                    @class = "btn btn-warning btn-sm glyphicon glyphicon-edit",
+                                    data_toggle = "tooltip",
+                                    data_placement = "top",
+                                    title = "Editar Registro"
+                                })
+                    @Html.ActionLink(" ", "Details", new { id = item.AccountId },
+                                new
+                                {
+                                    @class = "btn btn-info btn-sm glyphicon glyphicon-th-list",
+                                    data_toggle = "tooltip",
+                                    data_placement = "top",
+                                    title = "Detalhes do Registro"
+                                })
+                    @Html.ActionLink(" ", "Delete", new { id = item.AccountId },
+                                new
+                                {
+                                    @class = "btn btn-danger btn-sm glyphicon glyphicon-trash",
+                                    data_toggle = "tooltip",
+                                    data_placement = "top",
+                                    title = "Excluir o Registro"
+                                })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/Mascaras")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+
+            table = $('#contas').DataTable({
+                dom: "<lf<t>ip>",
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+                language: {
+                    "sEmptyTable": "Nenhum registro encontrado",
+                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                    "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sInfoThousands": ".",
+                    "sLengthMenu": "_MENU_ resultados por página",
+                    "sLoadingRecords": "Carregando...",
+                    "sProcessing": "Processando...",
+                    "sZeroRecords": "Nenhum registro encontrado",
+                    "sSearch": "Pesquisar",
+                    "oPaginate": {
+                        "sNext": "Próximo",
+                        "sPrevious": "Anterior",
+                        "sFirst": "Primeiro",
+                        "sLast": "Último"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Ordenar colunas de forma ascendente",
+                        "sSortDescending": ": Ordenar colunas de forma descendente"
+                    }
+                },
+            });
+        });
+
+    </script>
+}

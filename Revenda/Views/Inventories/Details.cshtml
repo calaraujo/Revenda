@@ -1,0 +1,42 @@
+﻿@model Revenda.Models.Inventory
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <h4>Ajuste de Inventário</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.ProductCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.ProductCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Warehouse.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Warehouse.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stock)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.InventoryId }, new { @class = "btn btn-warning btn-sm" })
+    @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn btn-success btn-sm" })
+</p>

@@ -1,0 +1,245 @@
+﻿@model Revenda.Models.NewPurchaseView
+
+@{
+    ViewBag.Title = "Compras";
+}
+
+<h2>Criar Compra</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <br />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.PurchaseId)
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.SupplierId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("SupplierId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.SupplierId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.WarehouseId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("WarehouseId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.WarehouseId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ConditionId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("ConditionId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ConditionId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Remarks, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Gravar" class="btn-primary btn-sm" />
+                    @Html.ActionLink("Adicionar", "AddProductPurchase", "Purchases", new { }, new { @class = "dialog-window btn btn-info" })
+                    @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn btn-success btn-sm" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <table id="compras" class="table table-bordered table-condensed table-striped table-hover table-responsive" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Details[0].Product.Image)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Details[0].Product.ProductCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Details[0].Description)
+                </th>
+                <th style="text-align:right">
+                    @Html.DisplayNameFor(model => model.Details[0].Cost)
+                </th>
+                <th style="text-align:right">
+                    @Html.DisplayNameFor(model => model.Details[0].Quantity)
+                </th>
+                <th style="text-align:right">
+                    @Html.DisplayNameFor(model => model.Details[0].Value)
+                </th>
+                <th style="text-align:center">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Details)
+            {
+                <tr>
+                    <td>
+                        @if (!string.IsNullOrEmpty(item.Product.Image))
+                        {
+                            <img src="@Url.Content(item.Product.Image)" alt="Image" style="width:50px;height:50px;max-width:100%;height:auto;" />
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.ProductCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td align="right">
+                        @Html.DisplayFor(modelItem => item.Cost)
+                    </td>
+                    <td align="right">
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>
+                    <td align="right">
+                        @Html.DisplayFor(modelItem => item.Value)
+                    </td>
+                    <td align="center">
+                        @Html.ActionLink("Excluir", "DeleteProduct", new { id = item.ProductId },
+                       new { @class = "btn btn-danger btn-sm", onclick = "return confirm('Excluir ? Tem Certeza ?')" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tr>
+            <td colspan="4" align="right">
+                <strong>Total</strong>
+            </td>
+            <td align="right">
+                <strong> @Html.DisplayFor(modelItem => Model.TotalQuantity) </strong>
+            </td>
+            <td align="right">
+                <strong> @Html.DisplayFor(modelItem => Model.TotalValue) </strong>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+
+}
+<div class="modal fade" id="AddProductPurchase" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2 class="modal-title"></h2>
+            </div>
+            <div class="modal-body"><div class="te">Please wait...</div></div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/Mascaras")
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#datepicker").datepicker(
+                {
+                    autoclose: true,
+                    changeMonth: true,
+                    changeYear: true,
+                    showOtherMonths: true,
+                    selectOtherMonths: true,
+                    dateFormat: 'dd/mm/yy',
+                    dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+                    dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S', 'D'],
+                    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+                    monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                    monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                    nextText: 'Proximo',
+                    prevText: 'Anterior'
+                })
+                .css("display", "inline-block")
+                .next("button").button(
+                    {
+                        icons: { primary: "ui-icon-calendar" },
+                        label: "Selecione uma data",
+                        text: false
+                });
+
+            $("body").on("click", "a.dialog-window", null, function (e) {
+                e.preventDefault();
+                var $link = $(this);
+                var title = $link.text();
+                $('#AddProductPurchase .modal-title').html(title);
+                var url = $(this).attr('href');
+                if (url.indexOf('#') == 0) {
+                    $('#AddProductPurchase').modal('show');
+                }
+                else {
+                    $.get(url, function (data) {
+                        $('#AddProductPurchase .te').html(data);
+                        $('#AddProductPurchase').modal();
+                    }).success(function () { $('input:text:visible:first').focus(); });
+
+                }
+            });
+
+            $('#compras').DataTable({
+                dom: "<lf<t>ip>",
+                "lengthMenu": [[4, 8, 12, 50, -1], [4, 8, 12, 50, "Todos"]],
+                language: {
+                    "sEmptyTable": "Nenhum registro encontrado",
+                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                    "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sInfoThousands": ".",
+                    "sLengthMenu": "_MENU_ resultados por página",
+                    "sLoadingRecords": "Carregando...",
+                    "sProcessing": "Processando...",
+                    "sZeroRecords": "Nenhum registro encontrado",
+                    "sSearch": "Pesquisar",
+                    "oPaginate": {
+                        "sNext": "Próximo",
+                        "sPrevious": "Anterior",
+                        "sFirst": "Primeiro",
+                        "sLast": "Último"
+                    },
+
+                    "oAria": {
+                        "sSortAscending": ": Ordenar colunas de forma ascendente",
+                        "sSortDescending": ": Ordenar colunas de forma descendente"
+                    }
+                },
+            });
+
+        });
+
+    </script>
+}
+

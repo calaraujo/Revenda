@@ -1,0 +1,61 @@
+﻿@model PagedList.IPagedList<Revenda.Models.Commission>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Comissões</h2>
+
+<p>
+    @Html.ActionLink("   Novo   ", "Create", new { }, new { @class = "btn-primary btn-sm" }) &nbsp;  
+    @Html.ActionLink("   Lista   ", "ReportForm", new { }, new { @class = "btn-warning btn-sm" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().LowerLimit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().UpperLimit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Percent)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LowerLimit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpperLimit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Percent)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.CommissionId }, new { @class = "btn btn-warning btn-sm" })
+                @Html.ActionLink("Detalhes", "Details", new { id = item.CommissionId }, new { @class = "btn btn-info btn-sm" })
+                @Html.ActionLink("Excluir", "Delete", new { id = item.CommissionId }, new { @class = "btn btn-danger btn-sm" })
+            </td>
+        </tr>
+    }
+
+</table>
+Página : @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new
+{
+    page,
+    sortOrder =
+    ViewBag.CurrentSort,
+    currentFilter = ViewBag.CurrentFilter
+}))

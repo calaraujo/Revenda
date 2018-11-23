@@ -1,0 +1,183 @@
+﻿@model IEnumerable<Revenda.Models.NewPayableView>
+
+@{
+    ViewBag.Title = "Contas a Pagar";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h4>Contas a Pagar</h4> <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.ActionLink("Voltar", "Index", new { }, new { @class = "btn btn-success btn-sm" })
+        <p></p>
+        @*<div id="contasapagar" class="panel panel-default container-fluid">*@
+
+        <table id="master" class="table table-bordered table-condensed table-striped table-hover table-responsive" style="width:100%">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th style="text-align:center">
+                        @Html.DisplayNameFor(model => model.PayableId)
+                    </th>
+                    <th style="text-align:center">
+                        @Html.DisplayNameFor(model => model.Condition.Description)
+                    </th>
+                    <th style="text-align:center">
+                        @Html.DisplayNameFor(model => model.Supplier.FullName)
+                    </th>
+                    <th style="text-align:center">
+                        @Html.DisplayNameFor(model => model.Payment)
+                    </th>
+                    <th style="text-align:center">
+                        @Html.DisplayNameFor(model => model.Date)
+                    </th>
+                    <th style="text-align:center">
+                        @Html.DisplayNameFor(model => model.Status)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <img src="/Content/images/details_open.png" alt="expand/collapse" rel="@item.PayableId" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PayableId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Condition.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Supplier.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Payment)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+}
+
+
+<div class="modal fade" id="NewPayment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2 class="modal-title">Pagamentos</h2>
+            </div>
+            <div class="modal-body"><div class="te">Aguarde por favor  ...</div></div>
+            <div class="modal-footer">
+                @*<button type="button" class="btn btn-success" data-dismiss="modal">Fechar</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/Mascaras")
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            var oTable;
+            $('#master tbody td img').on('click', function () {
+                var nTr = this.parentNode.parentNode;
+                if (this.src.match('details_close')) {
+                    /* This row is already open - close it */
+                    this.src = "/Content/images/details_open.png";
+                    oTable.fnClose(nTr);
+                }
+                else {
+                    /* Open this row */
+                    this.src = "/Content/images/details_close.png";
+                    var payableId = $(this).attr("rel");
+                    $.get("../GetPayables/" + payableId, function (pagar) {
+                        oTable.fnOpen(nTr, pagar, 'details');
+                    });
+                }
+            });
+
+            /* Initialize table and make first column non-sortable*/
+            oTable = $('#master').dataTable({
+                "bJQueryUI": true,
+                dom: "<lf<t>ip>",
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+                select: true,
+                language: {
+                    "sEmptyTable": "Nenhum registro encontrado",
+                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                    "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sInfoThousands": ".",
+                    "sLengthMenu": "_MENU_ resultados por página",
+                    "sLoadingRecords": "Carregando...",
+                    "sProcessing": "Processando...",
+                    "sZeroRecords": "Nenhum registro encontrado",
+                    "sSearch": "Pesquisar",
+                    "oPaginate": {
+                        "sNext": "Próximo",
+                        "sPrevious": "Anterior",
+                        "sFirst": "Primeiro",
+                        "sLast": "Último"
+                    },
+                    "select": {
+                        style: 'single',
+                        "rows": {
+                            "_": "Foram selecionados %d registros",
+                            "0": "",
+                            "1": "1 registro selecionado"
+                        },
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Ordenar colunas de forma ascendente",
+                        "sSortDescending": ": Ordenar colunas de forma descendente"
+                    }
+                },
+                select: {
+                    style: 'single',
+                },
+                "order": [[1, 'asc']]
+            });
+
+            $("body").on("click", "a.dialog-window", null, function (e) {
+                e.preventDefault();
+                var $link = $(this);
+                var title = $link.text();
+                //$('#Payment .modal-title').html(title);
+                var url = $(this).attr('href');
+                if (url.indexOf('#') == 0) {
+                    $('#NewPayment').modal('show');
+                }
+                else {
+                    $.get(url, function (data) {
+                        $('#NewPayment .te').html(data);
+                        $('#NewPayment').modal();
+                    }).success(function () { $('input:text:visible:first').focus(); });
+
+                }
+            });
+
+
+
+
+        });
+    </script>
+}

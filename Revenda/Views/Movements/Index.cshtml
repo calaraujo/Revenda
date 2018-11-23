@@ -1,0 +1,113 @@
+﻿@model IEnumerable<Revenda.Models.Movement>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Movimentos</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<table id="movimentos" class="table table-bordered table-condensed table-striped table-hover table-responsive" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MovementId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Parameter.Identity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Account.AccountCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StatementType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Data)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th style="text-align:right">
+                @Html.DisplayNameFor(model => model.Value)
+            </th>
+            @*<th></th>*@
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MovementId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Parameter.Identity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Account.AccountCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StatementType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td align="right">
+                    @Html.DisplayFor(modelItem => item.Value)
+                </td>
+                @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MovementId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.MovementId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.MovementId })
+                </td>*@
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/Mascaras")
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('#movimentos').DataTable({
+                dom: "<lf<t>ip>",
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+                language: {
+                    "sEmptyTable": "Nenhum registro encontrado",
+                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                    "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sInfoThousands": ".",
+                    "sLengthMenu": "_MENU_ resultados por página",
+                    "sLoadingRecords": "Carregando...",
+                    "sProcessing": "Processando...",
+                    "sZeroRecords": "Nenhum registro encontrado",
+                    "sSearch": "Pesquisar",
+                    "oPaginate": {
+                        "sNext": "Próximo",
+                        "sPrevious": "Anterior",
+                        "sFirst": "Primeiro",
+                        "sLast": "Último"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Ordenar colunas de forma ascendente",
+                        "sSortDescending": ": Ordenar colunas de forma descendente"
+                    }
+                },
+            });
+        });
+
+    </script>
+}

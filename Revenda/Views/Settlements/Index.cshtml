@@ -1,0 +1,178 @@
+﻿@model PagedList.IPagedList<Revenda.Models.Settlement>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Acerto - Contas";
+}
+
+<h2>Acerto - Contas</h2>
+
+<p>
+    @Html.ActionLink("Novo Acerto", "Create", new { }, new { @class = "btn-primary btn-sm" })
+</p>
+<table class="table table-condensed table-striped table-hover">
+    <tr>
+        @*<th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Commission.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Payable.Status)
+            </th>*@
+        <th style="text-align:right">
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Purchase.PurchaseId)
+        </th>
+        <th style="text-align:right">
+            @Html.DisplayNameFor(model => model.FirstOrDefault().LowerDate)
+        </th>
+        <th style="text-align:right">
+            @Html.DisplayNameFor(model => model.FirstOrDefault().UpperDate)
+        </th>
+        <th style="text-align:right">
+            @Html.DisplayNameFor(model => model.FirstOrDefault().TotalSales)
+        </th>
+        <th style="text-align:right">
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Percent)
+        </th>
+        <th style="text-align:right">
+            @Html.DisplayNameFor(model => model.FirstOrDefault().CommissionValue)
+        </th>
+        <th style="text-align:right">
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Bonus)
+        </th>
+        <th style="text-align:right">
+            @Html.DisplayNameFor(model => model.FirstOrDefault().NetValue)
+        </th>
+        <th style="text-align:left">
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Status)
+        </th>
+        <th>Ações</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Commission.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Payable.Status)
+                </td>*@
+            <td align="right">
+                @Html.DisplayFor(modelItem => item.Purchase.PurchaseId)
+            </td>
+            <td align="right">
+                @Html.DisplayFor(modelItem => item.LowerDate)
+            </td>
+            <td align="right">
+                @Html.DisplayFor(modelItem => item.UpperDate)
+            </td>
+            <td align="right">
+                @Html.DisplayFor(modelItem => item.TotalSales)
+            </td>
+            <td align="right">
+                @Html.DisplayFor(modelItem => item.Percent)
+            </td>
+            <td align="right">
+                @Html.DisplayFor(modelItem => item.CommissionValue)
+            </td>
+            <td align="right">
+                @Html.DisplayFor(modelItem => item.Bonus)
+            </td>
+            <td align="right">
+                @Html.DisplayFor(modelItem => item.NetValue)
+            </td>
+            <td align="left">
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.ActionLink(" ", "Edit", new { id = item.SettlementId },
+                     new
+                     {
+                         @class = "btn btn-warning btn-sm glyphicon glyphicon-edit",
+                         data_toggle = "tooltip",
+                         data_placement = "top",
+                         title = "Editar Registro"
+                     })
+                @Html.ActionLink(" ", "Details", new { id = item.SettlementId },
+                     new
+                     {
+                         @class = "btn btn-info btn-sm glyphicon glyphicon-th-list",
+                         data_toggle = "tooltip",
+                         data_placement = "top",
+                         title = "Detalhes do Registro"
+                     })
+                @Html.ActionLink(" ", "Delete", new { id = item.SettlementId },
+                     new
+                     {
+                         @class = "btn btn-danger btn-sm glyphicon glyphicon-trash",
+                         data_toggle = "tooltip",
+                         data_placement = "top",
+                         title = "Excluir o Registro"
+                     })
+                @if (item.Status == "Em Aberto" && item.CommissionValue == 0)
+                {
+                    @Html.ActionLink(" ", "Calculate", "Settlements", new { id = item.SettlementId, },
+                      new
+                      {
+                          @class = "btn btn-primary btn-sm glyphicon glyphicon-plus",
+                          data_toggle = "tooltip",
+                          data_placement = "top",
+                          title = "Calcular comissão"
+
+                      })
+                }
+                else
+                {
+                    @Html.ActionLink(" ", "Calculate", "Settlements", new { id = item.SettlementId },
+                      new
+                      {
+                          @class = "btn btn-primary btn-sm glyphicon glyphicon-plus",
+                          disabled = "disabled"
+                      })
+                }
+                @if (item.Status == "Em Aberto")
+                {
+                    @Html.ActionLink(" ", "SearchPayable", "Settlements", new { id = item.SettlementId },
+                      new
+                      {
+                          @class = "btn btn-success btn-sm glyphicon glyphicon-usd",
+                          data_toggle = "tooltip",
+                          data_placement = "top",
+                          title = "Gerar o Contas a Pagar"
+                      })
+                }
+                else
+                {
+                    @Html.ActionLink(" ", "SearchPayable", "Settlements", new { id = item.SettlementId },
+                      new
+                      {
+                          @class = "btn btn-success btn-sm glyphicon glyphicon-usd",
+                          disabled = "disabled"
+                      })
+                }
+            </td>
+        </tr>
+    }
+</table>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/Mascaras")
+
+    <script type="text/javascript">
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+
+        //toastr['success']('Cálculo da comissão realizado.');
+    </script>
+}
+
+Página : @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new
+{
+    page,
+    sortOrder =
+    ViewBag.CurrentSort,
+    currentFilter = ViewBag.CurrentFilter
+}))
